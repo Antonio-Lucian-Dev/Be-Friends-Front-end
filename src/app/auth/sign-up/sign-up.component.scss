@@ -1,0 +1,35 @@
+@import "/src/color-palete.scss";
+
+.container-register {
+  background-color: $blue;
+  min-height: calc(100vh - 80.97px);
+}
+
+.container-image {
+  width: 400px;
+  img {
+    width: 100%;
+  }
+}
+
+span, label {
+  color: $white;
+}
+
+form {
+  background: $gray;
+  border-radius: 10px;
+  height: 580px;
+  width: 300px;
+  align-items: center;
+  justify-content: center!important;
+  h2 {
+    color: $white;
+  }
+
+  input {
+    border-radius: 3px;
+    padding: 5px 4px;
+    border: 0;
+  }
+}

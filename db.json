@@ -1,0 +1,58 @@
+{
+ "users": [
+   {
+     "id": 1,
+     "profileImage": "src/assets/img/men-1.jpg",
+     "name": "Andrei Liviu",
+     "birthday": "19/05/1998",
+      "createdAt": "10/10/2021",
+      "bornLocation": "New York, US",
+      "liveLocation": "Los Angeles, US"
+    },
+    {
+      "id": 2,
+      "profileImage": "src/assets/img/girl-1.jpg",
+      "name": "Delia Andreea",
+      "birthday": "10/11/1999",
+       "createdAt": "23/12/2021",
+       "bornLocation": "Bacau, RO",
+       "liveLocation": "Rome, IT"
+     },
+     {
+      "id": 3,
+      "profileImage": "src/assets/img/girl-2.jpg",
+      "name": "Iulia Savu",
+      "birthday": "04/12/2002",
+       "createdAt": "02/07/2021",
+       "bornLocation": "Bucharest, RO",
+       "liveLocation": "New York, US"
+     }
+ ],
+ "comments": [
+   {
+     "id": 89,
+     "userId": 2,
+     "value": "Sunt perfect deacord!"
+   }
+ ],
+ "posts": [
+   {
+     "id": 21,
+     "userId": 1,
+     "description": "Ce zi frumoasa!",
+     "image": [
+       {
+         "id": 56,
+         "value": "src/assets/img/girl-2.jpg"
+       }
+     ],
+     "createdAt": "02/07/2021",
+     "likes": 23,
+     "comments": [
+       {
+         "commentId": 89
+       }
+     ]
+   }
+ ]
+}

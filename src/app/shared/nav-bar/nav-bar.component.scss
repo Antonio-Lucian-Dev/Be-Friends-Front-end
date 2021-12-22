@@ -1,0 +1,65 @@
+@import "/src/color-palete.scss";
+
+.container-nav {
+  background-color: $gray !important;
+}
+
+.logo {
+  width: 115px;
+  img {
+    width: 100%;
+  }
+}
+
+.container-search {
+  margin-left: 160px;
+  input {
+    background-color: $blue;
+    color: $white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 0;
+    border: none;
+  }
+}
+
+.container-profile {
+  width: 40px;
+  img {
+    width: 100%;
+    border-radius: 50%;
+  }
+}
+
+.icons {
+  mat-icon {
+    font-size: 25px;
+    color: $white;
+  }
+  .container-icon {
+    position: relative;
+    .red {
+      width: 10px;
+      height: 10px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      left: 73%;
+      bottom: 68%;
+    }
+    .noti-red {
+      width: 10px;
+      height: 10px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      left: 53%;
+      bottom: 64%;
+    }
+  }
+}
+
+.border-btn {
+  border-color: $white;
+  color: $white;
+}

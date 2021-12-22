@@ -1,0 +1,49 @@
+@import "/src/color-palete.scss";
+
+.container-list {
+  width: 320px;
+  background: $gray;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.top {
+  width: 100%;
+  .container-image {
+    width: 35px;
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .container-info {
+    color: $white;
+    span:nth-child(2) {
+      font-size: 12px;
+    }
+  }
+}
+
+.center {
+  width: 95%;
+  img {
+    width: 100%;
+    border-radius: 20px;
+  }
+  span {
+    color: $white;
+  }
+}
+
+.bottom {
+  width: 100%;
+  mat-icon {
+    color: $white;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  span {
+    color: $white;
+  }
+}

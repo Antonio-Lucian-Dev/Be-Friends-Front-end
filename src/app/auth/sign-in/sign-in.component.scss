@@ -1,0 +1,42 @@
+@import "/src/color-palete.scss";
+
+.container-login {
+  background-color: $blue;
+  min-height: calc(100vh - 80.97px);
+}
+
+.title-normal {
+  font-size: 36px;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: $fontWeight-700;
+}
+.green {
+  color: #207163;
+}
+.subtitle {
+  font-size: 32px;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: $fontWeight-400;
+}
+
+span, label {
+  color: $white;
+}
+
+form {
+  background: $gray;
+  border-radius: 10px;
+  height: 350px;
+  width: 300px;
+  align-items: center;
+  justify-content: center!important;
+  h2 {
+    color: $white;
+  }
+
+  input {
+    border-radius: 3px;
+    padding: 5px 4px;
+    border: 0;
+  }
+}
