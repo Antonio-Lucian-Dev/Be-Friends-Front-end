@@ -17,7 +17,7 @@ const NB_MODULES = [
   MatButtonModule,
   MatExpansionModule,
   ReactiveFormsModule,
-  FormsModule
+  FormsModule,
 ];
 const COMPONENTS = [
   NavBarComponent,

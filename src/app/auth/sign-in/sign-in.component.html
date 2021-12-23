@@ -2,16 +2,24 @@
   <div class="d-flex">
     <span class="title-normal">Welcome to <span class="green">Friends</span><br/> <span class="subtitle">A place were you can find a loot o friends</span></span>
   </div>
-  <form class="d-flex flex-column justify-content-start">
+  <form [formGroup]="userInfo" (ngSubmit)="onSubmit()" class="d-flex flex-column justify-content-start">
     <h2 class="mb-4">Login</h2>
     <div class="d-flex flex-column justify-content-start mb-4">
-      <label for="email">Email</label>
-      <input type="email" placeholder="something@mail.com" id="email">
+      <label for="email">Email*</label>
+      <input type="email" placeholder="something@mail.com" id="email" formControlName="email">
+      <div *ngIf="userInfoControls['email'].errors && userInfoControls['email'].touched" class="invalid-feedback">
+        <span class="error-message" *ngIf="userInfoControls['email'].errors['required']">Email is required</span>
+        <span class="error-message" *ngIf="userInfoControls['email'].errors['email']">Email must be a valid email address</span>
+      </div>
     </div>
     <div class="d-flex flex-column justify-content-start mb-4">
-      <label for="password">Password</label>
-      <input type="password" id="password">
+      <label for="password">Password*</label>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="userInfoControls['password'].errors && userInfoControls['password'].touched" class="invalid-feedback">
+        <span class="error-message" *ngIf="userInfoControls['password'].errors['required']">Password is required</span>
+      </div>
     </div>
+    <span class="mb-4 error-message" *ngIf="errorMessage">{{errorMessage}}</span>
     <div class="d-flex justify-content-center w-100">
       <button mat-raised-button type="submit" color="primary">Sign In</button>
     </div>

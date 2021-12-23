@@ -29,11 +29,14 @@ export class ListPostComponent implements OnInit {
         ]
       },
       user: {
-        "id": 1,
+        "id": '1',
         "profileImage": "./assets/img/men-1.jpg",
-        "name": "Andrei Liviu",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "123",
         "birthday": "19/05/1998",
-        "createdAt": "5z",
+        "createdAt": new Date(2018, 11, 24, 10, 33, 30, 0),
         "bornLocation": "New York, US",
         "liveLocation": "Los Angeles, US"
       }
@@ -58,11 +61,14 @@ export class ListPostComponent implements OnInit {
         ]
       },
       user: {
-        "id": 1,
+        "id": '1',
         "profileImage": "./assets/img/men-1.jpg",
-        "name": "Andrei Liviu",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "123",
         "birthday": "19/05/1998",
-        "createdAt": "5z",
+        "createdAt": new Date(2018, 11, 24, 10, 33, 30, 0),
         "bornLocation": "New York, US",
         "liveLocation": "Los Angeles, US"
       }
@@ -87,11 +93,14 @@ export class ListPostComponent implements OnInit {
         ]
       },
       user: {
-        "id": 1,
+        "id": '1',
         "profileImage": "./assets/img/men-1.jpg",
-        "name": "Andrei Liviu",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "123",
         "birthday": "19/05/1998",
-        "createdAt": "5z",
+        "createdAt": new Date(2018, 11, 24, 10, 33, 30, 0),
         "bornLocation": "New York, US",
         "liveLocation": "Los Angeles, US"
       }

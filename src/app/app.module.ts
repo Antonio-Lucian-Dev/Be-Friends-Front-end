@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModule } from './shared/shared.module';
 import { SignUpModule } from './auth/sign-up/sign-up.module';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { SignUpModule } from './auth/sign-up/sign-up.module';
     BrowserAnimationsModule,
     SharedModule,
     SignUpModule,
-    SignInModule
+    SignInModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

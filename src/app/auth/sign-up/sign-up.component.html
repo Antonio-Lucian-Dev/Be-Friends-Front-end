@@ -2,27 +2,43 @@
   <div class="container-image">
     <img src="./assets/img/register-image.png" alt="">
   </div>
-  <form class="d-flex flex-column justify-content-start">
+  <form [formGroup]="userInfo" (ngSubmit)="onSubmit()" class="d-flex flex-column justify-content-start">
     <h2 class="mb-4">Register</h2>
     <div class="d-flex flex-column justify-content-start mb-4">
-      <label for="firstName">First Name</label>
-      <input type="text" placeholder="Ex..Andrei" id="firstName">
+      <label for="firstName">First Name*</label>
+      <input type="text" placeholder="Ex..Andrei" id="firstName" formControlName="firstName">
+      <div *ngIf="userInfoControls['firstName'].errors && userInfoControls['firstName'].touched" class="invalid-feedback">
+        <span class="error-message" *ngIf="userInfoControls['firstName'].errors['required']">First Name is required</span>
+      </div>
     </div>
     <div class="d-flex flex-column justify-content-start mb-4">
-      <label for="lastName">Last Name</label>
-      <input type="text" placeholder="Ex..Savu" id="lastName">
+      <label for="lastName">Last Name*</label>
+      <input type="text" placeholder="Ex..Savu" id="lastName" formControlName="lastName">
+      <div *ngIf="userInfoControls['lastName'].errors && userInfoControls['lastName'].touched" class="invalid-feedback">
+        <span class="error-message" *ngIf="userInfoControls['lastName'].errors['required']">Last Name is required</span>
+      </div>
     </div>
     <div class="d-flex flex-column justify-content-start mb-4">
-      <label for="birthday">Birthday</label>
-      <input type="date" id="Birthday">
+      <label for="birthday">Birthday*</label>
+      <input type="date" id="Birthday" formControlName="birthday">
+      <div *ngIf="userInfoControls['birthday'].errors && userInfoControls['birthday'].touched" class="invalid-feedback">
+        <span class="error-message" *ngIf="userInfoControls['birthday'].errors['required']">Birthday is required</span>
+      </div>
     </div>
     <div class="d-flex flex-column justify-content-start mb-4">
-      <label for="email">Email</label>
-      <input type="email" placeholder="something@mail.com" id="email">
+      <label for="email">Email*</label>
+      <input type="email" placeholder="something@mail.com" id="email" formControlName="email">
+      <div *ngIf="userInfoControls['email'].errors && userInfoControls['email'].touched" class="invalid-feedback">
+        <span class="error-message" *ngIf="userInfoControls['email'].errors['required']">Email is required</span>
+        <span class="error-message" *ngIf="userInfoControls['email'].errors['email']">Email must be a valid email address</span>
+      </div>
     </div>
     <div class="d-flex flex-column justify-content-start mb-4">
-      <label for="password">Password</label>
-      <input type="password" id="password">
+      <label for="password">Password*</label>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="userInfoControls['password'].errors && userInfoControls['password'].touched" class="invalid-feedback">
+        <span class="error-message" *ngIf="userInfoControls['password'].errors['required']">Password is required</span>
+      </div>
     </div>
     <div class="d-flex justify-content-center w-100">
       <button mat-raised-button type="submit" color="primary">Sign In</button>
