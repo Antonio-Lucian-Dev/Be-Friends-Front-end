@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/components/interface/User';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -27,8 +28,9 @@ export class SignInComponent implements OnInit {
 
    onSubmit(): void {
     if(this.userInfo.valid) {
-      const response = this.authService.login(this.userInfo.get("email")?.value, this.userInfo.get("password")?.value);
-      if(response) {
+      let response;
+      this.authService.login(this.userInfo.get("email")?.value, this.userInfo.get("password")?.value).subscribe((user: User) => response = user);
+      if(response && response["id"]) {
         this.router.navigate(['/home']);
       } else {
         this.errorMessage = "Credentials do not match.\n Please retry!"

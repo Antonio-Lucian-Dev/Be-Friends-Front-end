@@ -7,7 +7,7 @@
      <input type="search" placeholder="Search..">
     </div>
   </div>
-  <div class="icons d-flex align-items-center" *ngIf="isUserLogged">
+  <div class="icons d-flex align-items-center" *ngIf="isUserLogged && user">
     <div class="d-flex align-items-center container-icon">
       <mat-icon class="material-icons-outlined">
         chat_bubble
@@ -21,7 +21,7 @@
         <div class="noti-red"></div>
     </div>
     <div class="d-flex align-items-center container-profile ml-4 mr-5">
-      <img src="./assets/img/girl-1.jpg" alt="">
+      <img [src]="user.profileImage" alt="">
     </div>
   </div>
   <div class="d-flex align-items-center mr-5" *ngIf="!isUserLogged">

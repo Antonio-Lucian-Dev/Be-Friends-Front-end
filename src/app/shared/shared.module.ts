@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ListStoryComponent } from './list-story/list-story.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingComponent } from './loading/loading.component';
 
 const NB_MODULES = [
   IvyCarouselModule,
@@ -22,11 +23,12 @@ const NB_MODULES = [
 const COMPONENTS = [
   NavBarComponent,
   ListStoryComponent,
-  ListPostComponent
+  ListPostComponent,
+  LoadingComponent
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ListStoryComponent],
+  declarations: [...COMPONENTS, ListStoryComponent, LoadingComponent],
   imports: [
     CommonModule,
     ...NB_MODULES

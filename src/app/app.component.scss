@@ -1,0 +1,11 @@
+app-loading {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  z-index: 11111;
+}

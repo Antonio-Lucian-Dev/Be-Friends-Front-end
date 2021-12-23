@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { User } from '../components/interface/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  @Output() isUserLogged: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -13,16 +15,29 @@ export class AuthService {
     return true;
   }
 
-  login(email: string, password: string): User | boolean {
+  login(email: string, password: string): Observable<User> {
     const user: User = JSON.parse(localStorage.getItem('user') || '{}');
+    const userNull: User = {
+      id: '',
+      profileImage: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      birthday: '',
+      createdAt: new Date(),
+      bornLocation: '',
+      liveLocation: ''
+    };
     if (user && user.email == email && user.password == password) {
-      return user;
+      this.isUserLogged.emit(true);
+      return this.getUser();
     } else {
-      return false;
+      return of(userNull);
     }
   }
 
-  getUser(): User {
-    return JSON.parse(localStorage.getItem('user') || '{}');
+  getUser(): Observable<User> {
+    return of(JSON.parse(localStorage.getItem('user') || '{}'));
   }
 }

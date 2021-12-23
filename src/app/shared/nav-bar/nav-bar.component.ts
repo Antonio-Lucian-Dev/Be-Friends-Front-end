@@ -17,10 +17,17 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     // TODO: verify if the user is logged, otherwise show the login btn
-    this.user = this.authService.getUser();
-    if(this.user.id) {
-      this.isUserLogged = true;
-    }
+    this.authService.isUserLogged.subscribe(() => {
+      this.authService.getUser().subscribe((user: User) => this.user = user);
+      if(this.user && this.user.id) {
+        this.isUserLogged = true;
+      }
+    });
+
+    this.authService.getUser().subscribe((user: User) => this.user = user);
+      if(this.user && this.user.id) {
+        this.isUserLogged = true;
+      }
   }
 
   login() {
