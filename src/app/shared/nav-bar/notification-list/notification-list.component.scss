@@ -1,0 +1,198 @@
+@import "/src/color-palete.scss";
+
+.close-icon {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .mat-list-base .mat-list-item:hover {
+  background: #fafafa;
+ }
+
+ .mat-list-item-content {
+  width: 100%;
+ }
+
+ .notification-icon__avatar {
+  border-radius: 50%;
+  width: 36px;
+ }
+
+ .notification-header {
+  display: flex;
+  padding: 20px 12px;
+  align-items: center;
+ }
+
+ .notification-header__title {
+  font-family: "Poppins semibold", "Noto Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+  line-height: 1.25em;
+  color: #1a2321;
+ }
+
+ .notification-header__mark-read {
+  font-family: "Poppins", "Noto Sans", sans-serif;
+  font-weight: 400;
+  color: #02a783;
+  margin-left: 114px;
+  font-size: 12px;
+  line-height: 16px;
+  font-style: normal;
+  cursor: pointer;
+ }
+
+ .mat-list-item {
+  width: 100%;
+  padding: 0;
+  height: auto !important;
+ }
+
+ .description-content {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  padding-left: 12px;
+  padding-bottom: 7px;
+  padding-top: 12px;
+  width: 15.4rem;
+ }
+
+ .description-content__description {
+  font-family: "Poppins", "Noto Sans", sans-serif;
+  letter-spacing: 0.25px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #506c65;
+  text-align: initial;
+  line-height: 1.35em;
+  padding-bottom: 4px;
+ }
+
+ .description-content__notification-time {
+  font-family: "Poppins", "Noto Sans", sans-serif;
+  letter-spacing: 0.25px;
+  font-size: 0.75rem;
+  line-height: 1.3em;
+  font-weight: 400;
+  color: #506c65;
+ }
+
+ .description-header {
+  font-weight: 900;
+  color: #000;
+ }
+
+ .close-icon__close {
+  border-radius: 18px;
+  font-style: normal;
+  font-weight: 400;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: lowercase;
+  background: #e0e0e0;
+  color: #fff;
+  vertical-align: -webkit-baseline-middle;
+ }
+
+ .close-icon__close:hover {
+  background: #02a783;
+ }
+
+ .notification-icon {
+  display: flex;
+  align-items: center;
+  span {
+    position: relative;
+  }
+ }
+
+ .notification-content {
+  height: 345px !important;
+  overflow: auto;
+  overflow-x: hidden;
+ }
+
+ .item-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+ }
+
+ .notification-icon {
+  span {
+    position: relative;
+  }
+ }
+
+ .badge {
+  position: absolute;
+  left: 69%;
+  bottom: 69%;
+  width: 10px;
+  height: 13px;
+  display: block;
+  border-radius: 50%;
+  background-color: #653cad;
+  border: 2px solid #ffff;
+ }
+
+ .illustration-no-notification {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  top: 39%;
+  position: absolute;
+  left: 14%;
+ }
+
+ .notificationList {
+  &.mat-menu-panel {
+    width: 330px !important;
+  }
+ }
+
+ .notification-link {
+  font-size: medium;
+  vertical-align: top;
+  height: 16px;
+  width: 16px;
+ }
+
+ .contenitor {
+  position: absolute;
+  right: 0%;
+ }
+
+ .container-icon {
+  position: relative;
+  mat-icon {
+    font-size: 25px;
+    color: $white;
+  }
+  .red {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    left: 73%;
+    bottom: 68%;
+  }
+  .noti-red {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    left: 53%;
+    bottom: 64%;
+  }
+}

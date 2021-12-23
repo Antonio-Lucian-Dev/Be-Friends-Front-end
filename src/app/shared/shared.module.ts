@@ -10,6 +10,10 @@ import { ListStoryComponent } from './list-story/list-story.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './loading/loading.component';
+import { NotificationListComponent } from './nav-bar/notification-list/notification-list.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatBadgeModule} from '@angular/material/badge';
 
 const NB_MODULES = [
   IvyCarouselModule,
@@ -19,6 +23,9 @@ const NB_MODULES = [
   MatExpansionModule,
   ReactiveFormsModule,
   FormsModule,
+  MatDividerModule,
+  MatListModule,
+  MatBadgeModule
 ];
 const COMPONENTS = [
   NavBarComponent,
@@ -28,7 +35,7 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ListStoryComponent, LoadingComponent],
+  declarations: [...COMPONENTS, ListStoryComponent, LoadingComponent, NotificationListComponent],
   imports: [
     CommonModule,
     ...NB_MODULES

@@ -1,0 +1,65 @@
+<div class="d-flex align-items-center ml-3 container-icon">
+  <mat-icon class="material-icons-outlined mat-badge-accent" matbadgecolor="accent" [matBadgeHidden]="true" [matBadge]="numberofNotificationsNotRead"
+   (click)="isOpen = !isOpen" [ngClass]="(numberofNotificationsNotRead == 0) ? 'mat-badge-hidden' : 'mat-badge-hidden'">
+    notifications
+  </mat-icon>
+</div>
+<!-- This template displays the overlay content and is connected to the button -->
+<div *ngIf="isOpen" class="contenitor">
+  <div role="menu" class="mat-menu-panel mat-menu-before mat-menu-below notificationList mat-elevation-z4">
+    <div class="mat-menu-content">
+      <div class="notification-list">
+        <div class="notification-header">
+          <div class="notification-header__title">Notifications</div>
+          <div class="notification-header__mark-read" (click)="markAllNotificationRead()"> Mark all as read</div>
+        </div>
+        <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal">
+        </mat-divider>
+        <div class="empty-state illustration-no-notification" *ngIf="notifications.length === 0">
+          <span>No notification for today!</span>
+        </div>
+        <div class="notification-content">
+          <mat-nav-list role="navigation" class="mat-nav-list mat-list-base" ng-reflect-disable-ripple="true">
+
+            <mat-list-item *ngFor="let notification of notifications; let i = index;" [attr.data-index]="i"
+              class="mat-list-item mat-focus-indicator notification-item ng-star-inserted">
+              <div class="mat-list-notification">
+                <div class="item-content">
+                  <div class="notification-icon">
+                    <span>
+                      <div [ngClass]="{'badge': notification.new }"></div>
+                      <mat-icon class="material-icons notification-icon__avatar">
+                        thumb_up
+                      </mat-icon>
+                    </span>
+                  </div>
+                  <div class="description-content" (click)="markNotificationAsRead(notification)">
+                    <div class="description-content__description">
+                      <span class="description-header"
+                        title="{{notification.prefData.title}}">{{notification.prefData.description}}</span>
+                    </div>
+                    <div class="description-content__notification-time">
+                      {{ moment(notification.createdAt).format('ddd,MMM Do YYYY, h:mm a') }}
+                      <mat-icon class="material-icons-outlined notification-link">
+                        open_in_new
+                      </mat-icon>
+                    </div>
+
+                  </div>
+                  <div class="close-icon" (click)="deleteNotification(notification.uuid)">
+                    <mat-icon role="img"
+                      class="mat-icon notranslate close-icon__close material-icons mat-icon-no-color">close</mat-icon>
+                  </div>
+                  <mat-divider role="separator" class="mat-divider mat-divider-horizontal"
+                    aria-orientation="horizontal">
+                  </mat-divider>
+                </div>
+              </div>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+        <div class="notification-header"></div>
+      </div>
+    </div>
+  </div>
+</div>
