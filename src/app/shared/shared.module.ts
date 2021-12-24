@@ -14,6 +14,8 @@ import { NotificationListComponent } from './nav-bar/notification-list/notificat
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatBadgeModule} from '@angular/material/badge';
+import { UserActionsComponent } from '../components/user-actions/user-actions.component';
+
 
 const NB_MODULES = [
   IvyCarouselModule,
@@ -31,11 +33,12 @@ const COMPONENTS = [
   NavBarComponent,
   ListStoryComponent,
   ListPostComponent,
-  LoadingComponent
+  LoadingComponent,
+  UserActionsComponent
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ListStoryComponent, LoadingComponent, NotificationListComponent],
+  declarations: [...COMPONENTS, ListStoryComponent, LoadingComponent, NotificationListComponent, UserActionsComponent],
   imports: [
     CommonModule,
     ...NB_MODULES

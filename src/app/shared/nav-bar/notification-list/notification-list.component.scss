@@ -154,6 +154,7 @@
  }
 
  .notificationList {
+  border-radius: 5px;
   &.mat-menu-panel {
     width: 330px !important;
   }
@@ -176,6 +177,7 @@
   mat-icon {
     font-size: 25px;
     color: $white;
+    cursor: pointer;
   }
   .red {
     width: 10px;

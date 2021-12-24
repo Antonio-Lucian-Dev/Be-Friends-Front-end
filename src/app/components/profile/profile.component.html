@@ -1,0 +1,102 @@
+<div class="d-flex flex-column align-items-center container-profile">
+  <div class="top pt-5 d-flex flex-column align-items-start w-100">
+    <mat-icon class="material-icons-outlined ml-4 mb-3 left-arrow" matTooltip="Go back to home" (click)="home()">
+      chevron_left
+    </mat-icon>
+    <div class="d-flex justify-content-around w-100 mt-5">
+      <div class="d-flex align-items-center">
+        <div class="container-image mr-4">
+          <img src="./assets/img/girl-1.jpg" alt="">
+        </div>
+        <span>name test</span>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="mr-5">3K<br />Follower</span>
+        <span>500<br />Followed</span>
+      </div>
+      <mat-icon class="material-icons-outlined">
+        settings
+      </mat-icon>
+    </div>
+  </div>
+  <div class="bottom d-flex flex-column align-items-center w-100 mt-5">
+    <div class="d-flex align-items-start w-100 pl-5">
+      <mat-tab-group animationDuration="0ms" class="w-100">
+        <mat-tab label="Home">
+          <div class="d-flex justify-content-center w-100 pt-5">
+            <div class="left">
+              <div class="container-information">
+                <div class="d-flex align-items-center mb-5">
+                  <mat-icon class="material-icons-outlined mr-3">
+                    home
+                  </mat-icon>
+                  <span>New York, US</span>
+                </div>
+                <div class="d-flex align-items-center mb-5">
+                  <mat-icon class="material-icons-outlined mr-3">
+                    near_me
+                  </mat-icon>
+                  <span>Los Angeles, US</span>
+                </div>
+                <div class="d-flex align-items-center mb-5">
+                  <mat-icon class="material-icons-outlined mr-3">
+                    cake
+                  </mat-icon>
+                  <span>19/05/98</span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <mat-icon class="material-icons-outlined mr-3">
+                    event_available
+                  </mat-icon>
+                  <span>10/10/21</span>
+                </div>
+              </div>
+            </div>
+            <div class="right">
+              <!-- Action section -->
+              <app-user-actions></app-user-actions>
+              <app-list-post></app-list-post>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Info">Info</mat-tab>
+        <mat-tab label="Photo">
+          <div class="d-flex justify-content-center w-100 pt-5">
+            <div class="container-images d-flex align-items-center justify-content-around w-100">
+              <div class="container-image-user d-flex align-items-center mr-4 mt-3">
+                <img src="./assets/img/poza-1.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-2.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-3.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-4.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-5.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-6.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-1.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-5.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-start mr-4 mt-3">
+                <img src="./assets/img/poza-6.jpg" alt="">
+              </div>
+              <div class="container-image-user d-flex align-items-center mr-4 mt-3">
+                <img src="./assets/img/poza-1.jpg" alt="">
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

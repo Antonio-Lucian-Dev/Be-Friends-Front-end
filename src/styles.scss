@@ -75,3 +75,21 @@ carousel {
 mat-expansion-panel {
   background-color: transparent!important;
 }
+
+mat-tab-group {
+  mat-tab-header {
+    width: 26%;
+  }
+  .mat-tab-label-content {
+    color: $white;
+  }
+  mat-ink-bar {
+    background-color: $white!important;
+  }
+  mat-tab-body {
+    overflow-y: visible!important;
+  }
+  .mat-tab-body-content {
+    overflow: visible;
+  }
+}

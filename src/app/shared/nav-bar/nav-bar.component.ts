@@ -38,4 +38,8 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/sign-up']);
   }
 
+  profile(): void {
+    this.router.navigate(['/profile' , this.user?.id]);
+  }
+
 }

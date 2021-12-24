@@ -5,43 +5,4 @@
   min-height: calc(100vh - 80.97px);
 }
 
-.profile-image {
-  width: 40px;
-  margin-right: 50px;
-  img {
-    width: 100%;
-    border-radius: 50%;
-  }
-}
 
-.icons {
-  mat-icon {
-    font-size: 25px;
-    color: $white;
-    cursor: pointer;
-  }
-}
-
-.action {
-  background: $gray;
-  padding: 20px 32px;
-  border-radius: 20px;
-  margin-top: 60px;
-}
-
-.add-post {
-  border: none;
-  background: transparent;
-  mat-icon {
-    color: $white;
-  }
-}
-
-form {
-  text-align: end;
-  textarea {
-    background-color: $white-05;
-    border: none;
-    color: $white!important;
-  }
-}

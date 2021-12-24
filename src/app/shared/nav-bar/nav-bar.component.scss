@@ -28,6 +28,7 @@
   img {
     width: 100%;
     border-radius: 50%;
+    cursor: pointer;
   }
 }
 
@@ -56,6 +57,9 @@
       left: 53%;
       bottom: 64%;
     }
+  }
+  mat-icon {
+    cursor: pointer;
   }
 }
 
