@@ -52,9 +52,11 @@
 .container-images {
   flex-wrap: wrap;
   .container-image-user {
-    height: 200px;
-    width: 200px;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    width: 200px;
+    height: 200px;
     border-radius: 20px;
     img {
 
