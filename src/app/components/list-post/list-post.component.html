@@ -1,11 +1,11 @@
 <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5" *ngFor="let post of posts">
   <div class="top d-flex justify-content-start mt-3 mb-3 ml-3">
     <div class="container-image mr-3">
-      <img [src]="post.user.profileImage" alt="">
+      <img [src]="post.profileImage" alt="">
     </div>
     <div class="container-info d-flex flex-column justify-content-start">
-       <span>{{post.user.firstName}} {{post.user.lastName}}</span>
-        <span>{{post.post.createdAt}}</span>
+       <span>{{post.firstName}} {{post.lastName}}</span>
+        <span>{{post.createdAt}}</span>
     </div>
   </div>
   <div class="center d-flex flex-column justify-content-center">

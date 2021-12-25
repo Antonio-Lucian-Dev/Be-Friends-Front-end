@@ -30,9 +30,7 @@ export class SignUpComponent implements OnInit {
   get userInfoControls() { return this.userInfo.controls; }
 
   onSubmit(): void {
-    console.log(this.userInfoControls)
     this.submitted = true;
-    console.log(this.userInfo.valid, this.userInfo.value);
     if (this.userInfo.valid) {
       const request = {
         id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),

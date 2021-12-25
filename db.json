@@ -43,7 +43,7 @@
      "image": [
        {
          "id": 56,
-         "value": "src/assets/img/girl-2.jpg"
+         "value": "src/assets/img/poza-1.jpg"
        }
      ],
      "createdAt": "02/07/2021",
@@ -53,6 +53,96 @@
          "commentId": 89
        }
      ]
-   }
+   },
+   {
+    "id": 21,
+    "userId": 1,
+    "description": "Ce zi frumoasa!",
+    "image": [
+      {
+        "id": 56,
+        "value": "src/assets/img/poza-2.jpg"
+      }
+    ],
+    "createdAt": "02/07/2021",
+    "likes": 23,
+    "comments": [
+      {
+        "commentId": 89
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "userId": 1,
+    "description": "Ce zi frumoasa!",
+    "image": [
+      {
+        "id": 56,
+        "value": "src/assets/img/poza-3.jpg"
+      }
+    ],
+    "createdAt": "02/07/2021",
+    "likes": 23,
+    "comments": [
+      {
+        "commentId": 89
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "userId": 1,
+    "description": "Ce zi frumoasa!",
+    "image": [
+      {
+        "id": 56,
+        "value": "src/assets/img/poza-4.jpg"
+      }
+    ],
+    "createdAt": "02/07/2021",
+    "likes": 23,
+    "comments": [
+      {
+        "commentId": 89
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "userId": 1,
+    "description": "Ce zi frumoasa!",
+    "image": [
+      {
+        "id": 56,
+        "value": "src/assets/img/poza-5.jpg"
+      }
+    ],
+    "createdAt": "02/07/2021",
+    "likes": 23,
+    "comments": [
+      {
+        "commentId": 89
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "userId": 1,
+    "description": "Ce zi frumoasa!",
+    "image": [
+      {
+        "id": 56,
+        "value": "src/assets/img/poza-6.jpg"
+      }
+    ],
+    "createdAt": "02/07/2021",
+    "likes": 23,
+    "comments": [
+      {
+        "commentId": 89
+      }
+    ]
+  }
  ]
 }

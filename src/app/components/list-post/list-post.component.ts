@@ -1,3 +1,6 @@
+import { AuthService } from './../../auth/auth.service';
+import { PostService } from './../../services/post.service';
+import { User } from './../interface/User';
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../interface/Post';
 
@@ -8,11 +11,11 @@ import { Post } from '../interface/Post';
 })
 export class ListPostComponent implements OnInit {
 
-  posts: Post[] = [
-    {
+  posts: any[] = [
+  /*  {
       post: {
-        "id": 21,
-        "userId": 1,
+        "id": '21',
+        "userId": '1',
         "description": "Ce zi frumoasa!",
         "image": [
           {
@@ -24,27 +27,15 @@ export class ListPostComponent implements OnInit {
         "likes": 23,
         "comments": [
           {
-            "commentId": 89
+            "commentId": '89'
           }
         ]
       },
-      user: {
-        "id": '1',
-        "profileImage": "./assets/img/men-1.jpg",
-        "firstName": "Andrei",
-        "lastName": "Liviu",
-        "email": "test@gmail.com",
-        "password": "123",
-        "birthday": "19/05/1998",
-        "createdAt": new Date(2018, 11, 24, 10, 33, 30, 0),
-        "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US"
-      }
     },
     {
       post: {
-        "id": 21,
-        "userId": 1,
+        "id": '21',
+        "userId": '1',
         "description": "Ce zi frumoasa!",
         "image": [
           {
@@ -56,27 +47,15 @@ export class ListPostComponent implements OnInit {
         "likes": 23,
         "comments": [
           {
-            "commentId": 89
+            "commentId": '89'
           }
         ]
       },
-      user: {
-        "id": '1',
-        "profileImage": "./assets/img/men-1.jpg",
-        "firstName": "Andrei",
-        "lastName": "Liviu",
-        "email": "test@gmail.com",
-        "password": "123",
-        "birthday": "19/05/1998",
-        "createdAt": new Date(2018, 11, 24, 10, 33, 30, 0),
-        "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US"
-      }
     },
     {
       post: {
-        "id": 21,
-        "userId": 1,
+        "id": '21',
+        "userId": '1',
         "description": "Ce zi frumoasa!",
         "image": [
           {
@@ -88,31 +67,27 @@ export class ListPostComponent implements OnInit {
         "likes": 23,
         "comments": [
           {
-            "commentId": 89
+            "commentId": '89'
           }
         ]
       },
-      user: {
-        "id": '1',
-        "profileImage": "./assets/img/men-1.jpg",
-        "firstName": "Andrei",
-        "lastName": "Liviu",
-        "email": "test@gmail.com",
-        "password": "123",
-        "birthday": "19/05/1998",
-        "createdAt": new Date(2018, 11, 24, 10, 33, 30, 0),
-        "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US"
-      }
-    }
+    } */
   ];
 
-constructor() { }
+  user: User[] = [];
+
+constructor(private postService: PostService, private authService: AuthService) { }
 
 ngOnInit(): void {
 }
 
-getAllPosts(): void {}
+getAllPosts(): void {
+ this.postService.getAllPosts().subscribe(posts => {
+   posts.forEach(post => {
+
+   })
+ })
+}
 
 getActualUserOfCurrentPost(): void {
 
