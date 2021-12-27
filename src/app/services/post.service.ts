@@ -15,7 +15,7 @@ export class PostService {
     this.CONNECTION_URL = "http://localhost:3000";
   }
 
-  getAllPosts(): Observable<any[]> {
+  getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.CONNECTION_URL}/posts`);
   }
 
@@ -29,5 +29,10 @@ export class PostService {
       });
     });
     return of(userPosts);
+  }
+
+  likeAPost(post: Post): Observable<boolean> {
+    this.http.patch<void>(`${this.CONNECTION_URL}/posts/${post.id}`, post);
+    return of(true);
   }
 }

@@ -1,148 +1,175 @@
 {
- "users": [
-   {
-     "id": 1,
-     "profileImage": "src/assets/img/men-1.jpg",
-     "name": "Andrei Liviu",
-     "birthday": "19/05/1998",
+  "users": [
+    {
+      "id": "1",
+      "profileImage": "./assets/img/men-1.jpg",
+      "firstName": "Andrei",
+      "lastName": "Liviu",
+      "email": "test@gmail.com",
+      "password": "password",
+      "birthday": "19/05/1998",
       "createdAt": "10/10/2021",
       "bornLocation": "New York, US",
       "liveLocation": "Los Angeles, US"
     },
     {
-      "id": 2,
-      "profileImage": "src/assets/img/girl-1.jpg",
-      "name": "Delia Andreea",
+      "id": "2",
+      "profileImage": "./assets/img/girl-1.jpg",
+      "firstName": "Delia",
+      "lastName": "Andreea",
+      "email": "test@gmail.com",
+      "password": "password",
       "birthday": "10/11/1999",
-       "createdAt": "23/12/2021",
-       "bornLocation": "Bacau, RO",
-       "liveLocation": "Rome, IT"
-     },
-     {
-      "id": 3,
-      "profileImage": "src/assets/img/girl-2.jpg",
-      "name": "Iulia Savu",
+      "createdAt": "23/12/2021",
+      "bornLocation": "Bacau, RO",
+      "liveLocation": "Rome, IT"
+    },
+    {
+      "id": "3",
+      "profileImage": "./assets/img/girl-2.jpg",
+      "firstName": "Iulia",
+      "lastName": "Savu",
+      "email": "test@gmail.com",
+      "password": "password",
       "birthday": "04/12/2002",
-       "createdAt": "02/07/2021",
-       "bornLocation": "Bucharest, RO",
-       "liveLocation": "New York, US"
-     }
- ],
- "comments": [
-   {
-     "id": 89,
-     "userId": 2,
-     "value": "Sunt perfect deacord!"
-   }
- ],
- "posts": [
-   {
-     "id": 21,
-     "userId": 1,
-     "description": "Ce zi frumoasa!",
-     "image": [
-       {
-         "id": 56,
-         "value": "src/assets/img/poza-1.jpg"
-       }
-     ],
-     "createdAt": "02/07/2021",
-     "likes": 23,
-     "comments": [
-       {
-         "commentId": 89
-       }
-     ]
-   },
-   {
-    "id": 21,
-    "userId": 1,
-    "description": "Ce zi frumoasa!",
-    "image": [
-      {
-        "id": 56,
-        "value": "src/assets/img/poza-2.jpg"
-      }
-    ],
-    "createdAt": "02/07/2021",
-    "likes": 23,
-    "comments": [
-      {
-        "commentId": 89
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "userId": 1,
-    "description": "Ce zi frumoasa!",
-    "image": [
-      {
-        "id": 56,
-        "value": "src/assets/img/poza-3.jpg"
-      }
-    ],
-    "createdAt": "02/07/2021",
-    "likes": 23,
-    "comments": [
-      {
-        "commentId": 89
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "userId": 1,
-    "description": "Ce zi frumoasa!",
-    "image": [
-      {
-        "id": 56,
-        "value": "src/assets/img/poza-4.jpg"
-      }
-    ],
-    "createdAt": "02/07/2021",
-    "likes": 23,
-    "comments": [
-      {
-        "commentId": 89
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "userId": 1,
-    "description": "Ce zi frumoasa!",
-    "image": [
-      {
-        "id": 56,
-        "value": "src/assets/img/poza-5.jpg"
-      }
-    ],
-    "createdAt": "02/07/2021",
-    "likes": 23,
-    "comments": [
-      {
-        "commentId": 89
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "userId": 1,
-    "description": "Ce zi frumoasa!",
-    "image": [
-      {
-        "id": 56,
-        "value": "src/assets/img/poza-6.jpg"
-      }
-    ],
-    "createdAt": "02/07/2021",
-    "likes": 23,
-    "comments": [
-      {
-        "commentId": 89
-      }
-    ]
-  }
- ]
+      "createdAt": "02/07/2021",
+      "bornLocation": "Bucharest, RO",
+      "liveLocation": "New York, US"
+    }
+  ],
+  "comments": [
+    {
+      "id": 89,
+      "userId": 2,
+      "value": "Sunt perfect deacord!"
+    }
+  ],
+  "posts": [
+    {
+      "id": "21",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-1.jpg"
+        }
+      ],
+      "createdAt": "02/07/2021",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-2.jpg"
+        }
+      ],
+      "createdAt": "02/07/2021",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-3.jpg"
+        }
+      ],
+      "createdAt": "02/07/2021",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "userId": "2",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-4.jpg"
+        }
+      ],
+      "createdAt": "02/07/2021",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-5.jpg"
+        }
+      ],
+      "createdAt": "02/07/2021",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": "56",
+          "value": "./assets/img/poza-6.jpg"
+        }
+      ],
+      "createdAt": "02/07/2021",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ]
+    }
+  ]
 }

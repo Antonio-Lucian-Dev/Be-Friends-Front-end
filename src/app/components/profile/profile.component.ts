@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.userId)
    this.postService.getPostByUserId(this.userId).subscribe(userPosts => {
      userPosts.forEach(userPost => {
-      userPost.post.image.forEach(image => this.images.push(image));
+      userPost.image.forEach(image => this.images.push(image));
      });
    });
   }

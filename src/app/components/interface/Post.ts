@@ -3,17 +3,17 @@ export interface Post {
   id: string,
   userId: string,
   description: string,
-  image: [
-    {
-      id: number,
-      value: string
-    }
-  ],
+  image: Image[],
   createdAt: string,
-  likes: number,
+  likes: string[],
   comments: [
     {
       commentId: string
     }
   ]
+}
+
+export interface Image {
+    id: number,
+    value: string
 }
