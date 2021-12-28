@@ -1,5 +1,7 @@
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-actions',
@@ -14,7 +16,7 @@ export class UserActionsComponent implements OnInit {
     text: new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +27,22 @@ export class UserActionsComponent implements OnInit {
 
   postComment() {
  //   console.log(this.commentForm.get('text').value);
+  }
+
+  openImageDialog(): void {
+    const dialogRef = this.dialog.open(ImageDialogComponent,
+      {
+        data: {
+          title: "Upload images"
+        },
+        panelClass: "customDialog",
+        width: '500px'
+      }
+      );
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

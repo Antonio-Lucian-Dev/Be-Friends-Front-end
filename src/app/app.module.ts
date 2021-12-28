@@ -11,11 +11,14 @@ import { SharedModule } from './shared/shared.module';
 import { SignUpModule } from './auth/sign-up/sign-up.module';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { ImageDialogComponent } from './components/user-actions/image-dialog/image-dialog.component';
+import {NgxFilesizeModule} from 'ngx-filesize';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ImageDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     SignUpModule,
     SignInModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxFilesizeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

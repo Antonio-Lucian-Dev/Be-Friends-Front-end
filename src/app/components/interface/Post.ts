@@ -14,6 +14,6 @@ export interface Post {
 }
 
 export interface Image {
-    id: number,
+    id: string,
     value: string
 }

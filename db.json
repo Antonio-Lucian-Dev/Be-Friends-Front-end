@@ -64,10 +64,22 @@
         {
           "commentId": "89"
         }
-      ]
+      ],
+      "user": {
+        "id": "1",
+        "profileImage": "./assets/img/men-1.jpg",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "password",
+        "birthday": "19/05/1998",
+        "createdAt": "10/10/2021",
+        "bornLocation": "New York, US",
+        "liveLocation": "Los Angeles, US"
+      }
     },
     {
-      "id": "21",
+      "id": "20",
       "userId": "1",
       "description": "Ce zi frumoasa!",
       "image": [
@@ -85,10 +97,22 @@
         {
           "commentId": "89"
         }
-      ]
+      ],
+      "user": {
+        "id": "1",
+        "profileImage": "./assets/img/men-1.jpg",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "password",
+        "birthday": "19/05/1998",
+        "createdAt": "10/10/2021",
+        "bornLocation": "New York, US",
+        "liveLocation": "Los Angeles, US"
+      }
     },
     {
-      "id": "21",
+      "id": "23",
       "userId": "1",
       "description": "Ce zi frumoasa!",
       "image": [
@@ -109,7 +133,7 @@
       ]
     },
     {
-      "id": "21",
+      "id": "26",
       "userId": "2",
       "description": "Ce zi frumoasa!",
       "image": [
@@ -130,7 +154,7 @@
       ]
     },
     {
-      "id": "21",
+      "id": "27",
       "userId": "1",
       "description": "Ce zi frumoasa!",
       "image": [
@@ -151,7 +175,7 @@
       ]
     },
     {
-      "id": "21",
+      "id": "28",
       "userId": "1",
       "description": "Ce zi frumoasa!",
       "image": [

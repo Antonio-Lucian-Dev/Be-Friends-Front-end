@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -11,7 +12,7 @@ export class PostService {
 
   CONNECTION_URL: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.CONNECTION_URL = "http://localhost:3000";
   }
 
@@ -23,7 +24,7 @@ export class PostService {
     let userPosts: Post[] = [];
     this.http.get<Post[]>(`${this.CONNECTION_URL}/posts`).subscribe((posts: Post[]) => {
       posts.forEach((post: Post) => {
-        if(post.userId == userId) {
+        if (post.userId == userId) {
           userPosts.push(post);
         }
       });
@@ -31,8 +32,28 @@ export class PostService {
     return of(userPosts);
   }
 
-  likeAPost(post: Post): Observable<boolean> {
-    this.http.patch<void>(`${this.CONNECTION_URL}/posts/${post.id}`, post);
-    return of(true);
+  likeAPost(post: Post): Observable<any> {
+    console.log(post)
+    return this.http.patch<any>(`${this.CONNECTION_URL}/posts/${post.id}`, post);
+  }
+
+  uploadFiles(file: File, userId: string, post: Post): Observable<any> {
+
+    let post = {
+      id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),,
+      userId: userId,
+      description: string,
+      image: Image[],
+      createdAt: string,
+      likes: string[],
+      comments: [
+        {
+          commentId: string
+        }
+      ]
+    }
+    this.authService.getUserById(userId).subscribe(user => {
+      this.http.get<Post[]>(`${this.CONNECTION_URL}/posts`);
+    })
   }
 }

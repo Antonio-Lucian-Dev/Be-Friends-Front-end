@@ -1,0 +1,32 @@
+<form [formGroup]="userForm" (ngSubmit)="createPost()"
+  class="container-upload d-flex flex-column align-items-center justify-contentcenter dotted-spaced">
+  <mat-icon class="material-icons upload-icon">
+    cloud_upload
+  </mat-icon>
+  <button mat-button class="mat-button-ternary" (click)="openUploadFileInput()">
+    OR BROWSE FILES
+  </button>
+  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="prepareFilesList($event.target)">
+</form>
+
+<mat-card class="mat-card-file-upload">
+  <mat-card-title>
+    <div class="w-100 d-flex align-items-center justify-content-center container-title-file">
+      <span>Image attached</span>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-nav-list>
+      <mat-list-item class="mat-list-file-upload" *ngFor="let file of filesUploaded">
+        <div class="list-item w-100">
+          <span class="mb-0">{{file.name}}</span>
+          <div class="d-flex align-items-center container-progresss justify-content-center">
+            <mat-progress-bar mode="determinate" value="{{file.progress}}"></mat-progress-bar>
+            <p>{{file.progress}}%</p>
+          </div>
+          <span>{{file.size | filesize}}</span>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-card-content>
+</mat-card>

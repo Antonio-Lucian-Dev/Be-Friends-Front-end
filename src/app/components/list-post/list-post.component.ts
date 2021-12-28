@@ -64,7 +64,6 @@ export class ListPostComponent implements OnInit {
           }); */
         // this.userSubscription?.unsubscribe();
         this.userSubscription = this.authService.getUserById(post.userId).subscribe(user => {
-          console.log(user)
           let modifiedPost = {
             id: '',
             user: {
@@ -95,7 +94,6 @@ export class ListPostComponent implements OnInit {
             modifiedPost.comments = post.comments;
           }
           this.posts.push(modifiedPost);
-          console.log(posts)
         });
         //  this.userSubscription?.unsubscribe();
       });
@@ -110,6 +108,19 @@ export class ListPostComponent implements OnInit {
         post.likes.push(this.user.id);
       }
       this.postService.likeAPost(post).subscribe(() => this.getAllPosts());
+    }
+  }
+
+  getBase64Image(img: any) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    if (ctx) {
+      ctx.drawImage(img, 0, 0);
+      var dataURL = canvas.toDataURL("image/png");
+      return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     }
   }
 }
