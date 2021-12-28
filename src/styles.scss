@@ -50,6 +50,7 @@ body {
 }
 
 carousel {
+  z-index: 2!important;
   .carousel-container {
     border-bottom: 2px solid $white;
   }
@@ -92,4 +93,9 @@ mat-tab-group {
   .mat-tab-body-content {
     overflow: visible;
   }
+}
+
+.mat-dialog-container {
+  padding: 0!important;
+  background-color: transparent!important;
 }

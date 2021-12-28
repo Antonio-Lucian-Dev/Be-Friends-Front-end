@@ -1,9 +1,12 @@
+@import "/src/color-palete.scss";
+
 .container-upload {
-  width: 30%;
+  width: 100%;
   padding: 20px;
-  height: 235px;
+  height: 100%;
   justify-content: center;
   z-index: 20000;
+  background-color: $blue;
 }
 
 .upload-icon {
@@ -31,4 +34,23 @@ mat-card {
 .container-progress {
   width: 400px;
   height: 5px;
+}
+
+.container-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.container-images {
+  flex-wrap: wrap;
+}
+
+#description {
+  border-radius: 20px;
+  padding: 6px 13px;
+  border: 0;
+  background-color: $gray;
+  color: $white;
 }

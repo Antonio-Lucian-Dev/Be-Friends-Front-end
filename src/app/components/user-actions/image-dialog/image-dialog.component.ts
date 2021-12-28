@@ -29,43 +29,48 @@ export class ImageDialogComponent implements OnInit {
   }
 
   openUploadFileInput(): void {
-    if(this.fileDropEl) {
+    if (this.fileDropEl) {
       this.fileDropEl.nativeElement.click();
     }
   }
 
   prepareFilesList(files: any): void {
-    for(const item of files.files) {
-      const actualImage = {
-        id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
-        value: item
-      }
-      this.images.push(actualImage);
-    }
-    console.log(files.files);
+    for (const item of files.files) {
 
-   /* this.filesToUpload = [];
-    for(const item of files.files) {
-      this.filesToUpload.push(item);
-    }
-    this.fileDropEl.nativeElement.value = "";
-    this.filesToUpload.forEach(file => {
-      let indexFileProgress = 0;
-      if(this.filesUploaded.length > 0) {
-        const fileInArray = this.filesUploaded.find(fileUp => fileUp.name === file.name);
-        if(fileInArray) {
-          const indexOfCurrentFile = this.filesUploaded.indexOf(fileInArray);
-          this.filesUploaded.splice(indexOfCurrentFile, 1, file);
-          indexFileProgress = this.filesUploaded.push(file) -1;
-        } else {
-          indexFileProgress = this.filesUploaded.push(file) -1;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        const actualImage = {
+          id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
+          value: reader.result
         }
-      } else {
-        indexFileProgress = this.filesUploaded.push(file) -1;
-      }
-      this.postService.uploadFiles(file).subscribe(data => console.log(data));
-    })
-  } */
+        this.images.push(actualImage);
+      });
+      reader.readAsDataURL(item);
+    }
+    console.log(this.images);
+
+    /* this.filesToUpload = [];
+     for(const item of files.files) {
+       this.filesToUpload.push(item);
+     }
+     this.fileDropEl.nativeElement.value = "";
+     this.filesToUpload.forEach(file => {
+       let indexFileProgress = 0;
+       if(this.filesUploaded.length > 0) {
+         const fileInArray = this.filesUploaded.find(fileUp => fileUp.name === file.name);
+         if(fileInArray) {
+           const indexOfCurrentFile = this.filesUploaded.indexOf(fileInArray);
+           this.filesUploaded.splice(indexOfCurrentFile, 1, file);
+           indexFileProgress = this.filesUploaded.push(file) -1;
+         } else {
+           indexFileProgress = this.filesUploaded.push(file) -1;
+         }
+       } else {
+         indexFileProgress = this.filesUploaded.push(file) -1;
+       }
+       this.postService.uploadFiles(file).subscribe(data => console.log(data));
+     })
+   } */
   }
 
   createPost() {
@@ -78,8 +83,8 @@ export class ImageDialogComponent implements OnInit {
       likes: [],
       comments: []
     }
-    if(this.userForm.valid) {
-       post.description = this.userForm.get("descripion")?.value;
+    if (this.userForm.valid) {
+      post.description = this.userForm.get("descripion")?.value;
     }
     console.log(post);
   }

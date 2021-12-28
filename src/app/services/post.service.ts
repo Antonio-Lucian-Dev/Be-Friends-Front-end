@@ -37,23 +37,9 @@ export class PostService {
     return this.http.patch<any>(`${this.CONNECTION_URL}/posts/${post.id}`, post);
   }
 
-  uploadFiles(file: File, userId: string, post: Post): Observable<any> {
-
-    let post = {
-      id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),,
-      userId: userId,
-      description: string,
-      image: Image[],
-      createdAt: string,
-      likes: string[],
-      comments: [
-        {
-          commentId: string
-        }
-      ]
-    }
+  /* uploadFiles(file: File, userId: string, post: Post): Observable<any> {
     this.authService.getUserById(userId).subscribe(user => {
-      this.http.get<Post[]>(`${this.CONNECTION_URL}/posts`);
+      this.http.post<any>(`${this.CONNECTION_URL}/posts`, post);
     })
-  }
+  } */
 }

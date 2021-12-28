@@ -15,5 +15,5 @@ export interface Post {
 
 export interface Image {
     id: string,
-    value: string
+    value: string | ArrayBuffer | null
 }
