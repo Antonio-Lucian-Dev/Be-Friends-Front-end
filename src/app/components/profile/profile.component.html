@@ -5,18 +5,17 @@
     </mat-icon>
     <div class="d-flex justify-content-around w-100 mt-5">
       <div class="d-flex align-items-center" *ngIf="user">
-        <div class="container-image mr-4">
-          <div  [ngStyle]="{'background-image': 'url(' + user!.profileImage + ')'}" id="userImageProfile" alt="" [matMenuTriggerFor]="menu"></div>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item  (click)="openUploadFileInput()">
-              <mat-icon class="material-icons-outlined">
-                photo_library
-              </mat-icon>
-              <span>Change Image</span>
-            </button>
-          </mat-menu>
-          <input type="file" id="uploadImageInput" #uploadImageInput (change)="uploadImage($event.target)">
-        </div>
+        <div class="mr-4" [ngStyle]="{'background-image': 'url(' + user!.profileImage + ')'}" id="userImageProfile"
+          alt="" [matMenuTriggerFor]="menu"></div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openUploadFileInput()">
+            <mat-icon class="material-icons-outlined">
+              photo_library
+            </mat-icon>
+            <span>Change Image</span>
+          </button>
+        </mat-menu>
+        <input type="file" id="uploadImageInput" #uploadImageInput (change)="uploadImage($event.target)">
         <span>{{user!.firstName}} {{user!.lastName}}</span>
       </div>
       <div class="d-flex align-items-center">
@@ -63,79 +62,24 @@
             </div>
             <div class="right">
               <!-- Action section -->
-              <app-user-actions></app-user-actions>
-                <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5" *ngFor="let post of posts">
-                  <div class=" d-flex justify-content-around mt-3 mb-3 ml-3 w-100">
-                    <div class="top d-flex justify-content-start" *ngIf="post.user">
-                      <div class="container-image mr-3">
-                        <img [src]="post.user.profileImage" alt="">
-                      </div>
-                      <div class="container-info d-flex flex-column justify-content-start">
-                         <span>{{post.user.firstName}} {{post.user.lastName}}</span>
-                          <span>{{post.createdAt | date: 'dd MMM yyyy, hh:mm'}}</span>
-                      </div>
-                    </div>
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                      <button mat-menu-item (click)="deletePost(post.id)">
-                        <mat-icon class="material-icons-outlined">
-                          delete
-                        </mat-icon>
-                        <span>Delete</span>
-                      </button>
-                    </mat-menu>
-                  </div>
-                  <div class="center d-flex flex-column justify-content-center">
-                    <span class="mb-2">{{post.description}}</span>
-                    <img *ngIf="post.image.length" [src]="post.image[0].value" alt="">
-                  </div>
-                  <div class="bottom d-flex align-items-center justify-content-start ml-3 mt-3 mb-3">
-                    <div class="d-flex align-items-center mr-4">
-                      <mat-icon class="material-icons-outlined mr-2" (click)="likeAction(post)" [ngClass]="post.likes.includes(user?.id) ? 'red' : ''">
-                        favorite
-                      </mat-icon>
-                      <span>{{post.likes.length}}</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <mat-icon class="material-icons-outlined mr-2">
-                        question_answer
-                        </mat-icon>
-                      <span>{{post.comments.length}}</span>
-                    </div>
+              <app-user-actions [userId]="userId"></app-user-actions>
+              <app-list-post *ngIf="user" [userInput]="user" (images)="getImagesFromPosts($event)"></app-list-post>
+              <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5">
+                <div class=" d-flex justify-content-around mt-3 mb-3 w-100">
+                  <div class="top d-flex justify-content-start" *ngIf="user">
+                    <span class="w-100 user-on-app">On Be Friend from: {{user.createdAt | date: 'dd MMM yyyy'}}</span>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </mat-tab>
         <mat-tab label="Info">Info</mat-tab>
         <mat-tab label="Photo">
           <div class="d-flex justify-content-center w-100 pt-5">
             <div class="container-images d-flex align-items-center justify-content-start w-100">
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-1.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-2.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-3.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-4.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-5.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-6.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-1.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-2.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-3.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-4.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-5.jpg')">
-              </div>
-              <div class="container-image-user d-flex align-items-center mr-4 mt-3" style="background-image:url('./assets/img/poza-6.jpg')">
+              <div class="container-image-user d-flex align-items-center mr-4 mt-3" *ngFor="let image of images"
+              [ngStyle]="{'background-image': 'url(' + image.value + ')'}">
               </div>
             </div>
           </div>

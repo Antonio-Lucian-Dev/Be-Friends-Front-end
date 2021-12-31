@@ -53,7 +53,6 @@ export class UserActionsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        console.log("Result: ", result)
         // Emit the post created
         this.postService.isPostCreated.emit(result);
       }

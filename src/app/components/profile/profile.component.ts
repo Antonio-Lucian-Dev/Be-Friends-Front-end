@@ -1,3 +1,4 @@
+import { Image } from './../interface/Post';
 import { User } from './../interface/User';
 import { AuthService } from './../../auth/auth.service';
 import { PostService } from './../../services/post.service';
@@ -5,6 +6,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from '../interface/Post';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-profile',
@@ -17,21 +19,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
   fileDropEl!: ElementRef;
 
   private routeSub: Subscription | undefined;
-  private userId: string = '';
+  public userId: string = '';
 
   public user: User | undefined;
 
   images: any[] = [];
-  posts: any[] | undefined;
+  posts: Post[] = [];
+  modifiedPost: any[] = [];
 
-  constructor(private router: Router, private postService: PostService, private route: ActivatedRoute, private authService: AuthService) {
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.userId = params['id']; //log the value of id
       this.authService.getUserById(this.userId).subscribe(user => this.user = user);
-      this.postService.getPostByUserId(this.userId).subscribe(posts => this.posts = posts);
     });
   }
 
@@ -63,18 +65,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.router.navigate(['/home']);
   }
 
-  getAllImages(): void {
-    console.log(this.userId)
-    this.postService.getPostByUserId(this.userId).subscribe(userPosts => {
-      userPosts.forEach(userPost => {
-        userPost.image.forEach(image => this.images.push(image));
-      });
-    });
+
+  getImagesFromPosts(images: Image[]): void {
+    this.images = [];
+    this.images.push(...images);
+    this.images = this.images.filter(image => image != undefined);
+    this.images.forEach(image => images.push(image[0]));
   }
-
-  deletePost(postId: string): void {}
-
-  likeAction(post: any): void {}
 
   ngOnDestroy(): void {
     this.routeSub?.unsubscribe();

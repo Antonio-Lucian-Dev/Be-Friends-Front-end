@@ -10,7 +10,7 @@ export class NotificationEndpointService {
   CONNECTION_URL: string;
 
   constructor() {
-    this.CONNECTION_URL = "http://localhost:9292";
+    this.CONNECTION_URL = "http://localhost:3000";
   }
 
   getNotifications(): Observable<Noty[]> {

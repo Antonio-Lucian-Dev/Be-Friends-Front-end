@@ -36,17 +36,14 @@ export class PostService {
   }
 
   likeAPost(post: Post): Observable<any> {
-    console.log(post)
     return this.http.patch<any>(`${this.CONNECTION_URL}/posts/${post.id}`, post);
   }
 
   createPost(post: Post): Observable<any> {
-    console.log(post)
     return this.http.post<any>(`${this.CONNECTION_URL}/posts`, post);
   }
 
   deletePostById(postId: string): Observable<boolean> {
-    console.log(postId)
     this.http.delete<any>(`${this.CONNECTION_URL}/posts/${postId}`);
     return of(true);
   }
