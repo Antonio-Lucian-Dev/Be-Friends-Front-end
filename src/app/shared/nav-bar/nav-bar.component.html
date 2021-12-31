@@ -15,10 +15,10 @@
         <div class="red"></div>
     </div>
     <div class="d-flex align-items-center ml-3 container-icon">
-      <app-notification-list></app-notification-list>
+      <app-notification-list [userId]="user.id"></app-notification-list>
     </div>
     <div class="d-flex align-items-center container-profile ml-4 mr-5">
-      <img [src]="user.profileImage" alt="" (click)="profile()">
+      <div [ngStyle]="{'background-image': 'url(' + user!.profileImage + ')'}" alt="" (click)="profile()" class="image-profile"></div>
     </div>
   </div>
   <div class="d-flex align-items-center mr-5" *ngIf="!isUserLogged">

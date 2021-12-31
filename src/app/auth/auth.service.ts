@@ -8,6 +8,7 @@ import { User } from '../components/interface/User';
 })
 export class AuthService {
   @Output() isUserLogged: EventEmitter<any> = new EventEmitter();
+  @Output() isUserModified: EventEmitter<any> = new EventEmitter();
 
   CONNECTION_URL: string;
 
@@ -15,10 +16,17 @@ export class AuthService {
     this.CONNECTION_URL = "http://localhost:3000";
   }
 
-  register(user: User): boolean {
-    this.http.post<User>(`${this.CONNECTION_URL}/posts`, user);
+  register(user: User): Observable<any> {
     localStorage.setItem('user', JSON.stringify(user));
-    return true;
+    return this.http.post<User>(`${this.CONNECTION_URL}/users`, user);
+  }
+
+  editUser(user: User) {
+    return this.http.patch<User>(`${this.CONNECTION_URL}/users/${user.id}`, user);
+  }
+
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.CONNECTION_URL}/users/${userId}`)
   }
 
   login(email: string, password: string): Observable<User> {
@@ -47,7 +55,7 @@ export class AuthService {
     return of(JSON.parse(localStorage.getItem('user') || '{}'));
   }
 
-  getUserById(userId: string): Observable<User | undefined> {
+  /*getUserById(userId: string): Observable<User | undefined> {
     let actualUser: User = {
       id: '',
       profileImage: '',
@@ -63,7 +71,7 @@ export class AuthService {
     return this.http.get<User[]>(`${this.CONNECTION_URL}/users`).pipe(
       mergeMap(users => of(users.find(user => user.id == userId)))
     );
-  }
+  } */
 
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.CONNECTION_URL}/users`);

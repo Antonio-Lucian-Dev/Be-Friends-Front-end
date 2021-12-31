@@ -1,6 +1,6 @@
 import { AuthService } from './../auth/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Post } from '../components/interface/Post';
 import { User } from '../components/interface/User';
@@ -9,6 +9,9 @@ import { User } from '../components/interface/User';
   providedIn: 'root'
 })
 export class PostService {
+
+  @Output() isPostCreated = new EventEmitter<any>();
+  @Output() postLiked = new EventEmitter<any>();
 
   CONNECTION_URL: string;
 
@@ -37,9 +40,14 @@ export class PostService {
     return this.http.patch<any>(`${this.CONNECTION_URL}/posts/${post.id}`, post);
   }
 
-  /* uploadFiles(file: File, userId: string, post: Post): Observable<any> {
-    this.authService.getUserById(userId).subscribe(user => {
-      this.http.post<any>(`${this.CONNECTION_URL}/posts`, post);
-    })
-  } */
+  createPost(post: Post): Observable<any> {
+    console.log(post)
+    return this.http.post<any>(`${this.CONNECTION_URL}/posts`, post);
+  }
+
+  deletePostById(postId: string): Observable<boolean> {
+    console.log(postId)
+    this.http.delete<any>(`${this.CONNECTION_URL}/posts/${postId}`);
+    return of(true);
+  }
 }

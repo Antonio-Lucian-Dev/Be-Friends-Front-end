@@ -22,10 +22,22 @@ export class NotificationEndpointService {
     notifications.map(notification => {
       if(notification.uuid == notificationId) {
         notification.read = true;
-        this.updateNotification(notifications);
+        notification.new = false;
         return;
       }
     });
+    this.updateNotification(notifications);
+    return of(JSON.parse(localStorage.getItem("notifications") || '{}'));
+  }
+
+  readAllNotifications(): Observable<Noty[]> {
+    const notifications: Noty[] = JSON.parse(localStorage.getItem("notifications") || '{}');
+    const modifiedNotifications = notifications.map(notification => {
+      notification.read = true;
+      notification.new = false;
+      return notification;
+    });
+    this.updateNotification(modifiedNotifications);
     return of(JSON.parse(localStorage.getItem("notifications") || '{}'));
   }
 

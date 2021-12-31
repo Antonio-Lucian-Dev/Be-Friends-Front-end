@@ -4,11 +4,20 @@
       chevron_left
     </mat-icon>
     <div class="d-flex justify-content-around w-100 mt-5">
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center" *ngIf="user">
         <div class="container-image mr-4">
-          <img src="./assets/img/girl-1.jpg" alt="">
+          <div  [ngStyle]="{'background-image': 'url(' + user!.profileImage + ')'}" id="userImageProfile" alt="" [matMenuTriggerFor]="menu"></div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item  (click)="openUploadFileInput()">
+              <mat-icon class="material-icons-outlined">
+                photo_library
+              </mat-icon>
+              <span>Change Image</span>
+            </button>
+          </mat-menu>
+          <input type="file" id="uploadImageInput" #uploadImageInput (change)="uploadImage($event.target)">
         </div>
-        <span>name test</span>
+        <span>{{user!.firstName}} {{user!.lastName}}</span>
       </div>
       <div class="d-flex align-items-center">
         <span class="mr-5">3K<br />Follower</span>
@@ -55,9 +64,50 @@
             <div class="right">
               <!-- Action section -->
               <app-user-actions></app-user-actions>
-              <app-list-post></app-list-post>
+                <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5" *ngFor="let post of posts">
+                  <div class=" d-flex justify-content-around mt-3 mb-3 ml-3 w-100">
+                    <div class="top d-flex justify-content-start" *ngIf="post.user">
+                      <div class="container-image mr-3">
+                        <img [src]="post.user.profileImage" alt="">
+                      </div>
+                      <div class="container-info d-flex flex-column justify-content-start">
+                         <span>{{post.user.firstName}} {{post.user.lastName}}</span>
+                          <span>{{post.createdAt | date: 'dd MMM yyyy, hh:mm'}}</span>
+                      </div>
+                    </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="deletePost(post.id)">
+                        <mat-icon class="material-icons-outlined">
+                          delete
+                        </mat-icon>
+                        <span>Delete</span>
+                      </button>
+                    </mat-menu>
+                  </div>
+                  <div class="center d-flex flex-column justify-content-center">
+                    <span class="mb-2">{{post.description}}</span>
+                    <img *ngIf="post.image.length" [src]="post.image[0].value" alt="">
+                  </div>
+                  <div class="bottom d-flex align-items-center justify-content-start ml-3 mt-3 mb-3">
+                    <div class="d-flex align-items-center mr-4">
+                      <mat-icon class="material-icons-outlined mr-2" (click)="likeAction(post)" [ngClass]="post.likes.includes(user?.id) ? 'red' : ''">
+                        favorite
+                      </mat-icon>
+                      <span>{{post.likes.length}}</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <mat-icon class="material-icons-outlined mr-2">
+                        question_answer
+                        </mat-icon>
+                      <span>{{post.comments.length}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
         </mat-tab>
         <mat-tab label="Info">Info</mat-tab>
         <mat-tab label="Photo">

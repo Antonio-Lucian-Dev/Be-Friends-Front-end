@@ -4,7 +4,7 @@ export interface Post {
   userId: string,
   description: string,
   image: Image[],
-  createdAt: string,
+  createdAt: Date,
   likes: string[],
   comments: [
     {

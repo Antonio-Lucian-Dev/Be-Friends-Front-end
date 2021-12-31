@@ -47,45 +47,23 @@ export class ImageDialogComponent implements OnInit {
       });
       reader.readAsDataURL(item);
     }
-    console.log(this.images);
-
-    /* this.filesToUpload = [];
-     for(const item of files.files) {
-       this.filesToUpload.push(item);
-     }
-     this.fileDropEl.nativeElement.value = "";
-     this.filesToUpload.forEach(file => {
-       let indexFileProgress = 0;
-       if(this.filesUploaded.length > 0) {
-         const fileInArray = this.filesUploaded.find(fileUp => fileUp.name === file.name);
-         if(fileInArray) {
-           const indexOfCurrentFile = this.filesUploaded.indexOf(fileInArray);
-           this.filesUploaded.splice(indexOfCurrentFile, 1, file);
-           indexFileProgress = this.filesUploaded.push(file) -1;
-         } else {
-           indexFileProgress = this.filesUploaded.push(file) -1;
-         }
-       } else {
-         indexFileProgress = this.filesUploaded.push(file) -1;
-       }
-       this.postService.uploadFiles(file).subscribe(data => console.log(data));
-     })
-   } */
   }
 
   createPost() {
     let post = {
       id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
       userId: this.data.userId,
-      description: '',
+      description: this.userForm.get("description")?.value,
       image: this.images,
       createdAt: new Date(),
-      likes: [],
-      comments: []
+      likes: [] as any,
+      comments: [] as any
     }
-    if (this.userForm.valid) {
-      post.description = this.userForm.get("descripion")?.value;
-    }
-    console.log(post);
+    this.postService.createPost(post).subscribe(result => {
+      if(result) {
+        this.dialogRef.close(result);
+      }
+    });
+
   }
 }

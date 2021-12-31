@@ -25,8 +25,12 @@
 
 .container-profile {
   width: 40px;
-  img {
-    width: 100%;
+
+  .image-profile {
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: cover;
     border-radius: 50%;
     cursor: pointer;
   }

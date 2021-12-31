@@ -18,6 +18,7 @@ import { UserActionsComponent } from '../components/user-actions/user-actions.co
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 const NB_MODULES = [
@@ -33,7 +34,8 @@ const NB_MODULES = [
   MatBadgeModule,
   MatDialogModule,
   MatProgressBarModule,
-  MatCardModule
+  MatCardModule,
+  MatMenuModule
 ];
 const COMPONENTS = [
   NavBarComponent,

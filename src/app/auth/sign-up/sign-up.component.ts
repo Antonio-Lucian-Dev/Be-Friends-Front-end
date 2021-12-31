@@ -44,11 +44,10 @@ export class SignUpComponent implements OnInit {
         bornLocation: "",
         liveLocation: ""
       }
-      const response = this.authService.register(request);
-      if (response) {
+      const response = this.authService.register(request).subscribe(response => {
         this.toastr.success('Registration Complete', 'Please login with your credential!');
         this.router.navigate(['/sign-in']);
-      }
+      });
     }
   }
 

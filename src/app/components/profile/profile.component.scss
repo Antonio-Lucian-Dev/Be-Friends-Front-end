@@ -12,10 +12,16 @@
 
 .container-image {
   width: 140px;
-  img {
-    width: 100%;
+  #userImageProfile {
+    height: 140px;
+    width: 140px;
+    background-position: center;
+    background-size: cover;
     border-radius: 50%;
     border: 2px solid $white;
+  }
+  #uploadImageInput {
+    display: none;
   }
 }
 

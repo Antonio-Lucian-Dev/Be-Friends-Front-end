@@ -28,6 +28,10 @@ export class NavBarComponent implements OnInit {
       if(this.user && this.user.id) {
         this.isUserLogged = true;
       }
+
+      this.authService.isUserModified.subscribe(() => {
+        this.authService.getUser().subscribe((user: User) => this.user = user);
+      });
   }
 
   login() {

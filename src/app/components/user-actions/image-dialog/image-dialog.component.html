@@ -1,14 +1,14 @@
-<form [formGroup]="userForm" (ngSubmit)="createPost()"
+<form [formGroup]="userForm"
   class="container-upload d-flex flex-column align-items-center justify-contentcenter dotted-spaced">
   <div class="d-flex flex-column align-items-start mb-3">
     <input type="text" placeholder="How was going today?" id="description" formControlName="description">
   </div>
-  <div class="d-flex flex-column align-items-center mb-3">
+  <div class="d-flex flex-column align-items-center mb-4 mt-4">
     <mat-icon class="material-icons upload-icon mb-4">
       cloud_upload
     </mat-icon>
-    <button mat-button class="mat-button-ternary" (click)="openUploadFileInput()">
-      OR BROWSE FILES
+    <button mat-button class="mat-button-ternary browse-file-btn" (click)="openUploadFileInput()">
+      BROWSE FILES
     </button>
     <input type="file" #fileDropRef id="fileDropRef" multiple (change)="prepareFilesList($event.target)">
   </div>
@@ -17,9 +17,9 @@
     </div>
   </div>
   <mat-divider></mat-divider>
-  <div class="d-flex align-items-center justify-content-end mt-3">
-    <button mat-button color="primary mr-2">Post</button>
-    <button mat-button color="warn mr-2">Cancel</button>
+  <div class="d-flex align-items-center justify-content-end mt-3 w-100">
+    <button mat-button color="primary" type="button" (click)="createPost()" class="mr-2">Post</button>
+    <button mat-button color="warn" mat-dialog-close class="mr-2">Cancel</button>
   </div>
 
 </form>
