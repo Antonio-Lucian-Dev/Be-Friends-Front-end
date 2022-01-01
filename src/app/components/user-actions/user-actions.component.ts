@@ -25,9 +25,9 @@ export class UserActionsComponent implements OnInit {
   constructor(public dialog: MatDialog, private postService: PostService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe(user => this.user = user);
+    this.authService.getUserFromLocal().subscribe(user => this.user = user);
     this.authService.isUserModified.subscribe(() => {
-      this.authService.getUser().subscribe((user: User) => this.user = user);
+      this.authService.getUserFromLocal().subscribe((user: User) => this.user = user);
     });
   }
 

@@ -24,6 +24,7 @@ export class SignUpComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('notifications');
   }
 
   // convenience getter for easy access to form fields

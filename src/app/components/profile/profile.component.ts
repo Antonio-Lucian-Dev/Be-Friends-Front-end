@@ -1,7 +1,6 @@
 import { Image } from './../interface/Post';
 import { User } from './../interface/User';
 import { AuthService } from './../../auth/auth.service';
-import { PostService } from './../../services/post.service';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -19,13 +18,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   fileDropEl!: ElementRef;
 
   private routeSub: Subscription | undefined;
+
   public userId: string = '';
 
+  // Complete user
   public user: User | undefined;
 
-  images: any[] = [];
   posts: Post[] = [];
-  modifiedPost: any[] = [];
+  images: any[] = [];
+
+  isMyProfile: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {
   }
@@ -33,12 +35,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.userId = params['id']; //log the value of id
-      this.authService.getUserById(this.userId).subscribe(user => this.user = user);
+      this.authService.getUserById(this.userId).subscribe(user => {
+        this.user = user;
+        this.authService.getUserFromLocal().subscribe(user => {
+          if(user.id == this.userId) {
+            this.isMyProfile = true;
+          }
+        })
+      });
     });
   }
 
   openUploadFileInput(): void {
-    if (this.fileDropEl) {
+    if (this.fileDropEl && this.isMyProfile) {
       this.fileDropEl.nativeElement.click();
     }
   }
@@ -66,11 +75,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
 
-  getImagesFromPosts(images: Image[]): void {
+  getImagesFromPosts(images: any): void {
     this.images = [];
-    this.images.push(...images);
+    console.log("Images emitted: ", images);
+  /*  this.images.push(...images);
     this.images = this.images.filter(image => image != undefined);
-    this.images.forEach(image => images.push(image[0]));
+    this.images.forEach(image => images.push(image[0])); */
   }
 
   ngOnDestroy(): void {

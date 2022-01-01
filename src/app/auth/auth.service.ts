@@ -17,8 +17,24 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    localStorage.setItem('user', JSON.stringify(user));
     return this.http.post<User>(`${this.CONNECTION_URL}/users`, user);
+  }
+
+  login(email: string, password: string): Observable<User | undefined> {
+    // Trebuie sa vad prin db json ca sa mearga loginul
+    let user: User | undefined;
+    this.http.get<User[]>(`${this.CONNECTION_URL}/users`).subscribe(users => {
+      user = users.filter(user => user.email == email && user.password == password)[0];
+      if(user) {
+        localStorage.setItem('user', JSON.stringify(user));
+      }
+    });
+    return of(user);
+  }
+
+  logOut(): Observable<boolean> {
+    localStorage.removeItem('user');
+    return of(true);
   }
 
   editUser(user: User) {
@@ -29,49 +45,9 @@ export class AuthService {
     return this.http.get<User>(`${this.CONNECTION_URL}/users/${userId}`)
   }
 
-  login(email: string, password: string): Observable<User> {
-    const user: User = JSON.parse(localStorage.getItem('user') || '{}');
-    const userNull: User = {
-      id: '',
-      profileImage: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      birthday: '',
-      createdAt: new Date(),
-      bornLocation: '',
-      liveLocation: ''
-    };
-    if (user && user.email == email && user.password == password) {
-      this.isUserLogged.emit(true);
-      return this.getUser();
-    } else {
-      return of(userNull);
-    }
-  }
-
-  getUser(): Observable<User> {
+  getUserFromLocal(): Observable<User> {
     return of(JSON.parse(localStorage.getItem('user') || '{}'));
   }
-
-  /*getUserById(userId: string): Observable<User | undefined> {
-    let actualUser: User = {
-      id: '',
-      profileImage: '',
-      firstName: '',
-      lastName: '',
-      birthday: '',
-      email: '',
-      password: '',
-      createdAt: new Date(),
-      bornLocation: '',
-      liveLocation: ''
-    };
-    return this.http.get<User[]>(`${this.CONNECTION_URL}/users`).pipe(
-      mergeMap(users => of(users.find(user => user.id == userId)))
-    );
-  } */
 
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.CONNECTION_URL}/users`);

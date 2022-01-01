@@ -18,24 +18,32 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     // TODO: verify if the user is logged, otherwise show the login btn
     this.authService.isUserLogged.subscribe(() => {
-      this.authService.getUser().subscribe((user: User) => this.user = user);
+      this.authService.getUserFromLocal().subscribe((user: User) => this.user = user);
       if(this.user && this.user.id) {
         this.isUserLogged = true;
       }
     });
 
-    this.authService.getUser().subscribe((user: User) => this.user = user);
+    this.authService.getUserFromLocal().subscribe((user: User) => this.user = user);
       if(this.user && this.user.id) {
         this.isUserLogged = true;
       }
 
       this.authService.isUserModified.subscribe(() => {
-        this.authService.getUser().subscribe((user: User) => this.user = user);
+        this.authService.getUserFromLocal().subscribe((user: User) => this.user = user);
       });
   }
 
   login() {
     this.router.navigate(['/sign-in']);
+  }
+
+  logOut() {
+    this.authService.logOut().subscribe(() => {
+      this.user = undefined;
+      this.router.navigate(['/sign-in']);
+      this.isUserLogged = false;
+    });
   }
 
   register() {

@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe(user => this.user = user);
+    this.authService.getUserFromLocal().subscribe(user => this.user = user);
   }
 
 }

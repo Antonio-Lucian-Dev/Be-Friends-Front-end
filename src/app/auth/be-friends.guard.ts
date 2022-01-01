@@ -15,7 +15,7 @@ export class BeFriendsGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let userResponse = null;
-      this.authService.getUser().subscribe(user => userResponse = user);
+      this.authService.getUserFromLocal().subscribe(user => userResponse = user);
     if(userResponse != null && userResponse["id"]) {
       return true;
     } else {
