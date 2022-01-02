@@ -38,13 +38,7 @@ export class NotificationEndpointService {
     localStorage.setItem("notifications", JSON.stringify(notifications));
   }
 
-  deleteNotification(uuid: string): Observable<boolean> {
-    let notifications: Noty[] = JSON.parse(localStorage.getItem("notifications") || '{}');
-    notifications.forEach(notification => {
-      if(notification.uuid == uuid) {
-        notifications.splice(notifications.indexOf(notification), 1);
-      }});
-    localStorage.setItem("notifications", JSON.stringify(notifications));
-    return of(true);
+  deleteNotification(uuid: string): Observable<any> {
+    return this.http.delete(`${this.CONNECTION_URL}/notifications/${uuid}`);
   }
 }

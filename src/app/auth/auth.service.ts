@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { mergeMap, Observable, of } from 'rxjs';
+import { map, mergeMap, Observable, of } from 'rxjs';
 import { User } from '../components/interface/User';
 
 @Injectable({
@@ -20,16 +20,9 @@ export class AuthService {
     return this.http.post<User>(`${this.CONNECTION_URL}/users`, user);
   }
 
-  login(email: string, password: string): Observable<User | undefined> {
+  login(email: string, password: string): Observable<User[]> {
     // Trebuie sa vad prin db json ca sa mearga loginul
-    let user: User | undefined;
-    this.http.get<User[]>(`${this.CONNECTION_URL}/users`).subscribe(users => {
-      user = users.filter(user => user.email == email && user.password == password)[0];
-      if(user) {
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-    });
-    return of(user);
+    return this.http.get<User[]>(`${this.CONNECTION_URL}/users`);
   }
 
   logOut(): Observable<boolean> {

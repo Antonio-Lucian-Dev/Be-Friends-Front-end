@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public userId: string = '';
 
+  public myUserId: string = '';
+
   // Complete user
   public user: User | undefined;
 
@@ -33,15 +35,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.myUserId = JSON.parse(localStorage.getItem('user') || '{}').id;
     this.routeSub = this.route.params.subscribe(params => {
       this.userId = params['id']; //log the value of id
       this.authService.getUserById(this.userId).subscribe(user => {
         this.user = user;
-        this.authService.getUserFromLocal().subscribe(user => {
-          if(user.id == this.userId) {
-            this.isMyProfile = true;
-          }
-        })
+        if (this.user.id == this.myUserId) {
+          this.isMyProfile = true;
+        }
       });
     });
   }
@@ -78,9 +79,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   getImagesFromPosts(images: any): void {
     this.images = [];
     console.log("Images emitted: ", images);
-  /*  this.images.push(...images);
-    this.images = this.images.filter(image => image != undefined);
-    this.images.forEach(image => images.push(image[0])); */
+    /*  this.images.push(...images);
+      this.images = this.images.filter(image => image != undefined);
+      this.images.forEach(image => images.push(image[0])); */
   }
 
   ngOnDestroy(): void {

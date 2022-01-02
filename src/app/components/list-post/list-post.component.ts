@@ -5,6 +5,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Post, Image } from '../interface/Post';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-post',
@@ -14,6 +15,9 @@ import * as _ from 'lodash';
 export class ListPostComponent implements OnInit, OnDestroy {
 
   @Input() myProfile: User | undefined;
+  @Input() specificUser: User | undefined;
+
+  @Input() myUserId: string = "";
 
   // We can emit to profile component our images to be displayed on photo section
   @Output() imageListEmitter = new EventEmitter<Image[]>();
@@ -25,15 +29,20 @@ export class ListPostComponent implements OnInit, OnDestroy {
   // A list of all users
   allUsers: User[] = [];
 
+
   userSubscription: Subscription | undefined;
   postSubscription: Subscription | undefined;
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService,  private router: Router) { }
 
   ngOnInit(): void {
     // Daca este profilul meu dami doar postarile mele
     if (this.myProfile) {
-      this.getMyPosts(this.myProfile);
+      this.getPostForSpecificUser(this.myProfile);
+      this.findImagesByUserId(this.myProfile.id);
+    } else if(this.specificUser) {
+      this.getPostForSpecificUser(this.specificUser);
+      this.findImagesByUserId(this.specificUser.id);
     } else {
        // Daca nu dami toate postarile
       this.userSubscription = this.authService.getAllUsers().subscribe(users => {
@@ -75,13 +84,17 @@ export class ListPostComponent implements OnInit, OnDestroy {
     });
   }
 
-  getMyPosts(user: User): void {
+  getPostForSpecificUser(user: User): void {
     this.posts = [];
-    this.postSubscription = this.postService.getPostByUserId(this.myProfile!.id).subscribe(posts => {
+    this.postSubscription = this.postService.getPostByUserId(user.id).subscribe(posts => {
       posts.forEach(post => {
         this.modifyPost(post, user);
       });
     });
+  }
+
+  goToUserProfile(userId: string): void {
+    this.router.navigate([`/profile/${userId}`]);
   }
 
   modifyPost(post: Post, user: User): void {
@@ -120,25 +133,25 @@ export class ListPostComponent implements OnInit, OnDestroy {
 
   findImagesByUserId(userId: string): void {
     const usersPost = this.posts.filter(post => post.userId == userId);
-    usersPost.filter(post => post.image.lenght > 0).forEach(post => this.images.push(...post.image));
+    console.log(usersPost)
+    this.images = usersPost.filter(post => post.image.lenght > 0).filter(post => post.image);
+    console.log(this.images)
     this.imageListEmitter.emit(this.images);
   }
 
 
   likeAction(post: Post): void {
-    this.userSubscription = this.authService.getUserFromLocal().subscribe(user => {
-      if (user) {
-        if (post.likes.includes(user.id)) {
-          post.likes.splice(post.likes.indexOf(user.id), 1);
+      if (this.myUserId) {
+        if (post.likes.includes(this.myUserId)) {
+          post.likes.splice(post.likes.indexOf(this.myUserId), 1);
         } else {
-          post.likes.push(user.id);
+          post.likes.push(this.myUserId);
         }
         this.postSubscription = this.postService.likeAPost(post).subscribe(() => {
           this.postSubscription?.unsubscribe();
           this.userSubscription?.unsubscribe();
         });
       }
-    });
   }
 
   deletePost(postId: string): void {

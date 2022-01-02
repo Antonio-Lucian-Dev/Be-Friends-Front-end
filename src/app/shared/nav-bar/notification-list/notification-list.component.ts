@@ -109,17 +109,17 @@ export class NotificationListComponent implements OnInit, AfterContentChecked {
   }
 
 
-
   markNotificationAsRead(notificationId: string) {
-    if (notificationId) {
+    let currentNotification = this.notifications.find(notification => notification.uuid == notificationId);
+    if (currentNotification) {
       //notification.new = false;
-      this.notificationService.readNotification(notificationId)
-        .subscribe(notifications => this.notifications = notifications);
+      this.notificationService.readNotification(currentNotification)
+        .subscribe(notification => this.notifications.splice(this.notifications.indexOf(notification), 1, notification));
     }
   }
 
   markAllNotificationRead(): void {
-    this.notificationService.readAllNotifications().subscribe(notifications => this.notifications = notifications);
+    //this.notificationService.readAllNotifications().subscribe(notifications => this.notifications = notifications);
   }
 
   deleteNotification(uuid: string) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 import { User } from 'src/app/components/interface/User';
 import { AuthService } from '../auth.service';
 
@@ -23,18 +24,24 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-   // convenience getter for easy access to form fields
-   get userInfoControls() { return this.userInfo.controls; }
+  // convenience getter for easy access to form fields
+  get userInfoControls() { return this.userInfo.controls; }
 
-   onSubmit(): void {
-    if(this.userInfo.valid) {
-      let response;
-      this.authService.login(this.userInfo.get("email")?.value, this.userInfo.get("password")?.value).subscribe((user: User) => response = user);
-      if(response && response["id"]) {
-        this.router.navigate(['/home']);
-      } else {
-        this.errorMessage = "Credentials do not match.\n Please retry!"
-      }
+  onSubmit(): void {
+    if (this.userInfo.valid) {
+      this.authService.login(this.userInfo.get("email")?.value, this.userInfo.get("password")?.value)
+        .subscribe((users: User[]) => {
+          const email = this.userInfo.get("email")?.value;
+          const password = this.userInfo.get("password")?.value;
+          const actualUser = users.find(user => (user.email == email && user.password == password));
+          if (actualUser && actualUser.id) {
+            localStorage.setItem('user', JSON.stringify(actualUser));
+            this.authService.isUserLogged.emit(actualUser);
+            this.router.navigate(['/home']);
+          } else {
+            this.errorMessage = "Credentials do not match.\n Please retry!"
+          }
+        });
     }
   }
 
