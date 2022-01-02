@@ -63,7 +63,7 @@
             <div class="right">
               <!-- Action section -->
               <app-user-actions [userId]="userId" *ngIf="isMyProfile"></app-user-actions>
-              <app-list-post *ngIf="user" [myUserId]="myUserId" [myProfile]="(user && isMyProfile) ? user : undefined" [specificUser]="(user && !isMyProfile) ? user : undefined" (images)="getImagesFromPosts($event)"></app-list-post>
+              <app-list-post *ngIf="user" [myUserId]="myUserId" [myProfile]="(user && isMyProfile) ? user : undefined" [specificUser]="(user && !isMyProfile) ? user : undefined" (imageListEmitter)="getImagesFromPosts($event)"></app-list-post>
               <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5">
                 <div class=" d-flex justify-content-around mt-3 mb-3 w-100">
                   <div class="top d-flex justify-content-start" *ngIf="user">

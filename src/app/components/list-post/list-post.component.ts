@@ -39,10 +39,8 @@ export class ListPostComponent implements OnInit, OnDestroy {
     // Daca este profilul meu dami doar postarile mele
     if (this.myProfile) {
       this.getPostForSpecificUser(this.myProfile);
-      this.findImagesByUserId(this.myProfile.id);
     } else if(this.specificUser) {
       this.getPostForSpecificUser(this.specificUser);
-      this.findImagesByUserId(this.specificUser.id);
     } else {
        // Daca nu dami toate postarile
       this.userSubscription = this.authService.getAllUsers().subscribe(users => {
@@ -127,17 +125,22 @@ export class ListPostComponent implements OnInit, OnDestroy {
     modifiedPost.comments = post.comments;
 
     this.posts.unshift(modifiedPost);
+    if(this.myProfile || this.specificUser) {
+      const usersPost = this.posts.filter(post => {
+        if((this.myProfile && post.user.id == this.myProfile.id) ||(this.specificUser && post.user.id == this.specificUser.id)) {
+          return post;
+        }
+      });
+      const images: Image[] = [];
+      usersPost.forEach(post => {
+        images.push(...post.image);
+      });
+      this.imageListEmitter.emit(images);
+    }
   }
 
   // Pentru imagini fac un find pe posts care se regaseste cu userul actual
 
-  findImagesByUserId(userId: string): void {
-    const usersPost = this.posts.filter(post => post.userId == userId);
-    console.log(usersPost)
-    this.images = usersPost.filter(post => post.image.lenght > 0).filter(post => post.image);
-    console.log(this.images)
-    this.imageListEmitter.emit(this.images);
-  }
 
 
   likeAction(post: Post): void {

@@ -79,6 +79,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   getImagesFromPosts(images: any): void {
     this.images = [];
     console.log("Images emitted: ", images);
+    this.images = images;
     /*  this.images.push(...images);
       this.images = this.images.filter(image => image != undefined);
       this.images.forEach(image => images.push(image[0])); */
