@@ -1,0 +1,34 @@
+@import "/src/color-palete.scss";
+
+.container-upload {
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 20000;
+  background-color: $blue;
+}
+
+.mat-dialog-actions {
+  justify-content: end!important;
+}
+
+.mat-dialog-title {
+  color: $white;
+  margin-bottom: 12px!important;
+}
+
+.mat-dialog-content {
+  p {
+    color: $white;
+  }
+  .input-user {
+    border-radius: 20px;
+    padding: 6px 13px;
+    border: 0;
+    background-color: $gray;
+    color: $white;
+  }
+}

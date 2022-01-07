@@ -17,6 +17,7 @@
     background-size: cover;
     border-radius: 50%;
     border: 2px solid $white;
+    cursor: pointer;
   }
   #uploadImageInput {
     display: none;
@@ -49,7 +50,7 @@
 
 .left {
   position: relative;
-  right: 37%;
+  right: 34%;
 }
 
 .container-images {

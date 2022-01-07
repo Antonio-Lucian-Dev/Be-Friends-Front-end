@@ -35,7 +35,7 @@ const NB_MODULES = [
   MatDialogModule,
   MatProgressBarModule,
   MatCardModule,
-  MatMenuModule
+  MatMenuModule,
 ];
 const COMPONENTS = [
   NavBarComponent,

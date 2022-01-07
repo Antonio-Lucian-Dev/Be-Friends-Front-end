@@ -28,6 +28,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "ngx-filesize": "^2.0.16",
+    "ngx-skeleton-loader": "^4.0.0",
     "ngx-toastr": "^14.2.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

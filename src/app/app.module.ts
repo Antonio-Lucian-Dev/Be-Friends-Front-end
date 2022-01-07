@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageDialogComponent } from './components/user-actions/image-dialog/image-dialog.component';
 import {NgxFilesizeModule} from 'ngx-filesize';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {NgxFilesizeModule} from 'ngx-filesize';
     SignInModule,
     ToastrModule.forRoot(),
     HttpClientModule,
-    NgxFilesizeModule
+    NgxFilesizeModule,
+    NgxSkeletonLoaderModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

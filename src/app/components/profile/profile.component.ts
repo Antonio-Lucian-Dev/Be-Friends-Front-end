@@ -1,3 +1,4 @@
+import { UpdateUserDataModalComponent } from './update-user-data-modal/update-user-data-modal.component';
 import { Image } from './../interface/Post';
 import { User } from './../interface/User';
 import { AuthService } from './../../auth/auth.service';
@@ -6,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from '../interface/Post';
 import * as _ from 'lodash';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +23,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public userId: string = '';
 
-  public myUserId: string = '';
+  public myProfile: User | undefined;
 
   // Complete user
   public user: User | undefined;
@@ -31,18 +33,31 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   isMyProfile: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {
+  isUserInMyFollowed = false;
+
+  isLoading = true;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    public dialog: MatDialog
+    ) {
   }
 
   ngOnInit(): void {
-    this.myUserId = JSON.parse(localStorage.getItem('user') || '{}').id;
+    this.myProfile = JSON.parse(localStorage.getItem('user') || '{}');
     this.routeSub = this.route.params.subscribe(params => {
       this.userId = params['id']; //log the value of id
       this.authService.getUserById(this.userId).subscribe(user => {
         this.user = user;
-        if (this.user.id == this.myUserId) {
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 2000);
+        if (this.user.id == this.myProfile!.id) {
           this.isMyProfile = true;
         }
+        this.isActualUserInMyFollowed();
       });
     });
   }
@@ -52,6 +67,87 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.fileDropEl.nativeElement.click();
     }
   }
+
+  /*
+  isActualUserInMyFollower(): void {
+    let userFinded;
+    userFinded = this.myProfile?.follower.find(userId => userId == this.userId);
+    if(userFinded) {
+      this.isUserInMyFollowed = true;
+    } else {
+      this.isUserInMyFollowed = false;
+    }
+  } */
+
+  isActualUserInMyFollowed(): void {
+    let userFinded;
+    if(this.myProfile) {
+      userFinded = this.myProfile.followed.find(userId => userId == this.userId);
+    }
+    console.log(this.myProfile)
+console.log(userFinded)
+    if(userFinded) {
+      this.isUserInMyFollowed = true;
+    } else {
+      this.isUserInMyFollowed = false;
+    }
+    console.log(this.isUserInMyFollowed)
+  }
+
+  addBornLocation(): void {
+    this.openDialog(true);
+  }
+
+  addLiveLocation(): void {
+    this.openDialog(false);
+  }
+
+  openDialog(isBornLocation: boolean): void {
+    const dialogRef = this.dialog.open(UpdateUserDataModalComponent, {
+      width: '300px',
+      height: '300px',
+      data: {isBornLocation: isBornLocation},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(isBornLocation && result) {
+        this.user!.bornLocation = result;
+        this.authService.editUser(this.user!).subscribe();
+      } else if(!isBornLocation && result) {
+        this.user!.liveLocation = result;
+        this.authService.editUser(this.user!).subscribe();
+      }
+    });
+  }
+
+  followActualUser(userId: string): void {
+    if(this.myProfile && userId) {
+      this.myProfile?.followed.push(userId);
+      this.authService.editUser(this.myProfile).subscribe(() => {
+        this.user?.follower.push(this.myProfile!.id);
+        this.updateActualUser(this.user!);
+      });
+    }
+  }
+
+  unfollowActualUser(userId: string): void {
+    if(this.myProfile && userId) {
+      this.myProfile?.followed.splice(this.myProfile.followed.indexOf(userId), 1);
+      this.authService.editUser(this.myProfile).subscribe(() => {
+        console.log(this.myProfile);
+        this.user?.follower.splice(this.user?.follower.indexOf(this.myProfile!.id), 1);
+        this.updateActualUser(this.user!);
+      });
+    }
+  }
+
+  updateActualUser(user: User): void {
+    this.authService.editUser(user).subscribe(() => {
+      localStorage.setItem('user', JSON.stringify(this.myProfile));
+      this.isActualUserInMyFollowed();
+    });
+  }
+
 
   uploadImage(images: any): void {
     for (const item of images.files) {
@@ -80,9 +176,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.images = [];
     console.log("Images emitted: ", images);
     this.images = images;
-    /*  this.images.push(...images);
-      this.images = this.images.filter(image => image != undefined);
-      this.images.forEach(image => images.push(image[0])); */
   }
 
   ngOnDestroy(): void {

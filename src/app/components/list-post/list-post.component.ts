@@ -37,6 +37,7 @@ export class ListPostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Daca este profilul meu dami doar postarile mele
+    console.log(this.myProfile)
     if (this.myProfile) {
       this.getPostForSpecificUser(this.myProfile);
     } else if(this.specificUser) {

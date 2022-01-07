@@ -9,4 +9,6 @@ export interface User {
   createdAt: Date,
   bornLocation: string,
   liveLocation: string
+  follower: string[];
+  followed: string[];
 }

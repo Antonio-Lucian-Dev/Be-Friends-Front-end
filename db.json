@@ -8,9 +8,15 @@
       "email": "test@gmail.com",
       "password": "password",
       "birthday": "19/05/1998",
-      "createdAt": "10/10/2021",
+      "createdAt": "2022-01-05T08:42:49.989Z",
       "bornLocation": "New York, US",
-      "liveLocation": "Los Angeles, US"
+      "liveLocation": "Los Angeles, US",
+      "follower": [],
+      "followed": [
+        "3150",
+        "5522",
+        "3464"
+      ]
     },
     {
       "id": "2",
@@ -20,9 +26,18 @@
       "email": "test@gmail.com",
       "password": "password",
       "birthday": "10/11/1999",
-      "createdAt": "23/12/2021",
+      "createdAt": "2021-07-23T08:42:49.989Z",
       "bornLocation": "Bacau, RO",
-      "liveLocation": "Rome, IT"
+      "liveLocation": "Rome, IT",
+      "follower": [
+        "3",
+        "3464"
+      ],
+      "followed": [
+        "1",
+        "3",
+        "3464"
+      ]
     },
     {
       "id": "3",
@@ -32,21 +47,36 @@
       "email": "test@gmail.com",
       "password": "password",
       "birthday": "04/12/2002",
-      "createdAt": "02/07/2021",
+      "createdAt": "2021-06-11T08:42:49.989Z",
       "bornLocation": "Bucharest, RO",
-      "liveLocation": "New York, US"
+      "liveLocation": "New York, US",
+      "follower": [
+        "1",
+        "2"
+      ],
+      "followed": [
+        "1",
+        "2"
+      ]
     },
     {
-      "id": "a9b2",
+      "id": "3464",
       "profileImage": "./assets/img/no-image.png",
       "firstName": "Antonia",
       "lastName": "Lexy",
       "email": "fgh@gmail.com",
-      "birthday": "2022-01-17",
+      "birthday": "2022-01-11",
       "password": "as",
-      "createdAt": "2022-01-02T08:26:35.662Z",
+      "createdAt": "2022-01-07T13:32:14.081Z",
       "bornLocation": "",
-      "liveLocation": ""
+      "liveLocation": "",
+      "follower": [
+        "1",
+        "2"
+      ],
+      "followed": [
+        "2"
+      ]
     }
   ],
   "comments": [
@@ -87,7 +117,9 @@
         "birthday": "19/05/1998",
         "createdAt": "10/10/2021",
         "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US"
+        "liveLocation": "Los Angeles, US",
+        "follower": [],
+        "followed": []
       }
     },
     {
@@ -120,7 +152,9 @@
         "birthday": "19/05/1998",
         "createdAt": "10/10/2021",
         "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US"
+        "liveLocation": "Los Angeles, US",
+        "follower": [],
+        "followed": []
       }
     },
     {
@@ -173,9 +207,16 @@
         "email": "test@gmail.com",
         "password": "password",
         "birthday": "10/11/1999",
-        "createdAt": "23/12/2021",
+        "createdAt": "2021-07-23T08:42:49.989Z",
         "bornLocation": "Bacau, RO",
-        "liveLocation": "Rome, IT"
+        "liveLocation": "Rome, IT",
+        "follower": [
+          "3"
+        ],
+        "followed": [
+          "1",
+          "3"
+        ]
       }
     },
     {

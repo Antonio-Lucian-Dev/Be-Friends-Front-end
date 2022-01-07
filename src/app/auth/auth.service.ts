@@ -30,7 +30,7 @@ export class AuthService {
     return of(true);
   }
 
-  editUser(user: User) {
+  editUser(user: User): Observable<any> {
     return this.http.patch<User>(`${this.CONNECTION_URL}/users/${user.id}`, user);
   }
 

@@ -1,4 +1,9 @@
-<div class="d-flex flex-column align-items-center container-profile">
+<div class="pt-5" *ngIf="isLoading">
+  <ngx-skeleton-loader count="20" appearance="line" animation="pulse" [theme]="{
+    'background-color': '#3a3d46'
+  }"></ngx-skeleton-loader>
+</div>
+<div class="d-flex flex-column align-items-center container-profile" *ngIf="!isLoading">
   <div class="top pt-5 d-flex flex-column align-items-start w-100">
     <mat-icon class="material-icons-outlined ml-4 mb-3 left-arrow" matTooltip="Go back to home" (click)="home()">
       chevron_left
@@ -19,12 +24,19 @@
         <span>{{user!.firstName}} {{user!.lastName}}</span>
       </div>
       <div class="d-flex align-items-center">
-        <span class="mr-5">3K<br />Follower</span>
-        <span>500<br />Followed</span>
+        <span class="mr-5">{{user?.follower?.length}}<br />Follower</span>
+        <span>{{user?.followed?.length}}<br />Followed</span>
       </div>
       <mat-icon *ngIf="isMyProfile" class="material-icons-outlined">
         settings
       </mat-icon>
+      <div class="d-flex align-items-center" *ngIf="!isMyProfile">
+        <span class="mr-3" *ngIf="isUserInMyFollowed">Followed</span>
+        <button mat-raised-button color="primary" *ngIf="!isUserInMyFollowed"
+          (click)="followActualUser(user!.id)">Follow</button>
+        <button mat-raised-button color="warn" *ngIf="isUserInMyFollowed"
+          (click)="unfollowActualUser(user!.id)">Unfollow</button>
+      </div>
     </div>
   </div>
   <div class="bottom d-flex flex-column align-items-center w-100 mt-5">
@@ -34,36 +46,57 @@
           <div class="d-flex justify-content-center w-100 pt-5">
             <div class="left">
               <div class="container-information">
-                <div class="d-flex align-items-center mb-5">
+                <div class="d-flex align-items-center mb-5" *ngIf="user?.bornLocation">
                   <mat-icon class="material-icons-outlined mr-3">
                     home
                   </mat-icon>
-                  <span>New York, US</span>
+                  <span style="width: 145px;">{{user?.bornLocation}}</span>
+                  <mat-icon class="material-icons-outlined ml-2" *ngIf="isMyProfile" (click)="addBornLocation()">
+                    edit
+                  </mat-icon>
                 </div>
-                <div class="d-flex align-items-center mb-5">
+                <div class="d-flex align-items-center mb-5" *ngIf="!user?.bornLocation && isMyProfile">
+                  <span class="mr-3">Add born location</span>
+                  <mat-icon class="material-icons-outlined" (click)="addBornLocation()">
+                    add_circle
+                  </mat-icon>
+                </div>
+                <div class="d-flex align-items-center mb-5" *ngIf="user?.liveLocation">
                   <mat-icon class="material-icons-outlined mr-3">
                     near_me
                   </mat-icon>
-                  <span>Los Angeles, US</span>
+                  <span style="width: 145px;">{{user?.liveLocation}}</span>
+                  <mat-icon class="material-icons-outlined ml-2" *ngIf="isMyProfile" (click)="addLiveLocation()">
+                    edit
+                  </mat-icon>
+                </div>
+                <div class="d-flex align-items-center mb-5" *ngIf="!user?.liveLocation && isMyProfile">
+                  <span class="mr-3">Add live location</span>
+                  <mat-icon class="material-icons-outlined" (click)="addLiveLocation()">
+                    add_circle
+                  </mat-icon>
                 </div>
                 <div class="d-flex align-items-center mb-5">
                   <mat-icon class="material-icons-outlined mr-3">
                     cake
                   </mat-icon>
-                  <span>19/05/98</span>
+                  <span>{{user?.birthday}}</span>
                 </div>
                 <div class="d-flex align-items-center">
                   <mat-icon class="material-icons-outlined mr-3">
                     event_available
                   </mat-icon>
-                  <span>10/10/21</span>
+                  <span>{{user?.createdAt | date: 'dd/MM/yyyy'}}</span>
                 </div>
               </div>
             </div>
             <div class="right">
               <!-- Action section -->
               <app-user-actions [userId]="userId" *ngIf="isMyProfile"></app-user-actions>
-              <app-list-post *ngIf="user" [myUserId]="myUserId" [myProfile]="(user && isMyProfile) ? user : undefined" [specificUser]="(user && !isMyProfile) ? user : undefined" (imageListEmitter)="getImagesFromPosts($event)"></app-list-post>
+              <app-list-post *ngIf="user" [myUserId]="myProfile!.id"
+                [myProfile]="(user && isMyProfile) ? user : undefined"
+                [specificUser]="(user && !isMyProfile) ? user : undefined"
+                (imageListEmitter)="getImagesFromPosts($event)"></app-list-post>
               <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5">
                 <div class=" d-flex justify-content-around mt-3 mb-3 w-100">
                   <div class="top d-flex justify-content-start" *ngIf="user">
@@ -74,14 +107,22 @@
             </div>
           </div>
         </mat-tab>
-        <mat-tab label="Info">Info</mat-tab>
+        <mat-tab label="Info">
+          <div class="d-flex justify-content-center w-100 pt-5" *ngIf="images.length == 0">
+            <span style="text-align: center;" class="w-100">No Information for now</span>
+          </div>
+        </mat-tab>
         <mat-tab label="Photo">
-          <div class="d-flex justify-content-center w-100 pt-5">
+          <div class="d-flex justify-content-center w-100 pt-5" *ngIf="images.length > 0">
             <div class="container-images d-flex align-items-center justify-content-start w-100">
               <div class="container-image-user d-flex align-items-center mr-4 mt-3" *ngFor="let image of images"
-              [ngStyle]="{'background-image': 'url(' + image.value + ')'}">
+                [ngStyle]="{'background-image': 'url(' + image.value + ')'}">
               </div>
             </div>
+          </div>
+
+          <div class="d-flex justify-content-center w-100 pt-5" *ngIf="images.length == 0">
+            <span style="text-align: center;" class="w-100">No Information for now</span>
           </div>
         </mat-tab>
       </mat-tab-group>
