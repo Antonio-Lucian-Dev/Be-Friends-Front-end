@@ -24,14 +24,18 @@ export class NavBarComponent implements OnInit {
       }
     });
 
-    this.authService.getUserFromLocal().subscribe((user: User) => this.user = user);
-      if(this.user && this.user.id) {
-        this.isUserLogged = true;
-      }
+     this.retrieveActualUser();
 
       this.authService.isUserModified.subscribe(() => {
         this.authService.getUserFromLocal().subscribe((user: User) => this.user = user);
       });
+  }
+
+  retrieveActualUser(): void {
+    this.authService.getUserFromLocal().subscribe((user: User) => this.user = user);
+    if(this.user && this.user.id) {
+      this.isUserLogged = true;
+    }
   }
 
   login() {
@@ -51,7 +55,9 @@ export class NavBarComponent implements OnInit {
   }
 
   profile(): void {
-    this.router.navigate(['/profile' , this.user?.id]);
+    if(this.user) {
+      this.router.navigate(['/profile' , this.user.id]);
+    }
   }
 
 }

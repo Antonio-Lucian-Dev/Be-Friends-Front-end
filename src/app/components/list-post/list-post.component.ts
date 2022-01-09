@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Post, Image } from '../interface/Post';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-post',
@@ -30,26 +30,28 @@ export class ListPostComponent implements OnInit, OnDestroy {
   allUsers: User[] = [];
 
 
-  userSubscription: Subscription | undefined;
-  postSubscription: Subscription | undefined;
+  private userSubscription: Subscription | undefined;
+  private postSubscription: Subscription | undefined;
+  private routeSub: Subscription | undefined;
 
-  constructor(private postService: PostService, private authService: AuthService,  private router: Router) { }
+  constructor(private postService: PostService, private authService: AuthService, private router: Router, private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     // Daca este profilul meu dami doar postarile mele
-    console.log(this.myProfile)
-    if (this.myProfile) {
-      this.getPostForSpecificUser(this.myProfile);
-    } else if(this.specificUser) {
-      this.getPostForSpecificUser(this.specificUser);
-    } else {
-       // Daca nu dami toate postarile
-      this.userSubscription = this.authService.getAllUsers().subscribe(users => {
-        this.allUsers = users;
-        this.getUsersPost(users);
-        this.userSubscription?.unsubscribe();
-      });
-    }
+    this.routeSub = this.route.params.subscribe(params => {
+      if(params['id']) {
+        this.authService.getUserById(params['id']).subscribe(user => {
+          if(user && this.specificUser) {
+            if (user.id !== this.specificUser!.id) {
+              this.myProfile = user;
+              this.specificUser = undefined;
+            }
+          }
+          this.verifyWhatUserToLoadPosts();
+        });
+      }
+      this.verifyWhatUserToLoadPosts();
+    });
 
 
     // Emitte-uri pentru a face un fel de refresh in postarile noastre
@@ -57,7 +59,7 @@ export class ListPostComponent implements OnInit, OnDestroy {
     // When a post is created this event will be subscribed
     this.postSubscription = this.postService.isPostCreated.subscribe(post => {
       const actualUser = this.allUsers.find(user => user.id == post.userId);
-      if(actualUser) {
+      if (actualUser) {
         this.modifyPost(post, actualUser);
       }
       this.postSubscription?.unsubscribe();
@@ -69,6 +71,22 @@ export class ListPostComponent implements OnInit, OnDestroy {
       this.postSubscription?.unsubscribe();
     });
   }
+
+  verifyWhatUserToLoadPosts(): void {
+    if (this.myProfile) {
+      this.getPostForSpecificUser(this.myProfile);
+    } else if (this.specificUser) {
+      this.getPostForSpecificUser(this.specificUser);
+    } else {
+      // Daca nu dami toate postarile
+      this.userSubscription = this.authService.getAllUsers().subscribe(users => {
+        this.allUsers = users;
+        this.getUsersPost(users);
+        this.userSubscription?.unsubscribe();
+      });
+    }
+  }
+
 
   getUsersPost(users: User[]): void {
     this.posts = [];
@@ -84,11 +102,15 @@ export class ListPostComponent implements OnInit, OnDestroy {
   }
 
   getPostForSpecificUser(user: User): void {
-    this.posts = [];
+    console.log("User ", user)
     this.postSubscription = this.postService.getPostByUserId(user.id).subscribe(posts => {
-      posts.forEach(post => {
-        this.modifyPost(post, user);
-      });
+      this.posts = [];
+      console.log(posts)
+      if(posts) {
+        posts.forEach(post => {
+          this.modifyPost(post, user);
+        });
+      }
     });
   }
 
@@ -126,9 +148,9 @@ export class ListPostComponent implements OnInit, OnDestroy {
     modifiedPost.comments = post.comments;
 
     this.posts.unshift(modifiedPost);
-    if(this.myProfile || this.specificUser) {
+    if (this.myProfile || this.specificUser) {
       const usersPost = this.posts.filter(post => {
-        if((this.myProfile && post.user.id == this.myProfile.id) ||(this.specificUser && post.user.id == this.specificUser.id)) {
+        if ((this.myProfile && post.user.id == this.myProfile.id) || (this.specificUser && post.user.id == this.specificUser.id)) {
           return post;
         }
       });
@@ -145,17 +167,17 @@ export class ListPostComponent implements OnInit, OnDestroy {
 
 
   likeAction(post: Post): void {
-      if (this.myUserId) {
-        if (post.likes.includes(this.myUserId)) {
-          post.likes.splice(post.likes.indexOf(this.myUserId), 1);
-        } else {
-          post.likes.push(this.myUserId);
-        }
-        this.postSubscription = this.postService.likeAPost(post).subscribe(() => {
-          this.postSubscription?.unsubscribe();
-          this.userSubscription?.unsubscribe();
-        });
+    if (this.myUserId) {
+      if (post.likes.includes(this.myUserId)) {
+        post.likes.splice(post.likes.indexOf(this.myUserId), 1);
+      } else {
+        post.likes.push(this.myUserId);
       }
+      this.postSubscription = this.postService.likeAPost(post).subscribe(() => {
+        this.postSubscription?.unsubscribe();
+        this.userSubscription?.unsubscribe();
+      });
+    }
   }
 
   deletePost(postId: string): void {
@@ -171,6 +193,7 @@ export class ListPostComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userSubscription?.unsubscribe();
     this.postSubscription?.unsubscribe();
+    this.routeSub?.unsubscribe();
   }
 
 }

@@ -93,7 +93,7 @@
             <div class="right">
               <!-- Action section -->
               <app-user-actions [userId]="userId" *ngIf="isMyProfile"></app-user-actions>
-              <app-list-post *ngIf="user" [myUserId]="myProfile!.id"
+              <app-list-post *ngIf="user" [myUserId]="myProfile!.id ? myProfile!.id : user.id"
                 [myProfile]="(user && isMyProfile) ? user : undefined"
                 [specificUser]="(user && !isMyProfile) ? user : undefined"
                 (imageListEmitter)="getImagesFromPosts($event)"></app-list-post>

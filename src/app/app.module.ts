@@ -14,12 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageDialogComponent } from './components/user-actions/image-dialog/image-dialog.component';
 import {NgxFilesizeModule} from 'ngx-filesize';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { TermsComponent } from './components/terms/terms.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ImageDialogComponent,
+    TermsComponent,
   ],
   imports: [
     BrowserModule,

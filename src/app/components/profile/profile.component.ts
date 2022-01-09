@@ -42,12 +42,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private authService: AuthService,
     public dialog: MatDialog
-    ) {
+  ) {
   }
 
   ngOnInit(): void {
     this.myProfile = JSON.parse(localStorage.getItem('user') || '{}');
     this.routeSub = this.route.params.subscribe(params => {
+      console.log("?Intra profile")
       this.userId = params['id']; //log the value of id
       this.authService.getUserById(this.userId).subscribe(user => {
         this.user = user;
@@ -81,12 +82,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   isActualUserInMyFollowed(): void {
     let userFinded;
-    if(this.myProfile) {
+    if (this.myProfile) {
       userFinded = this.myProfile.followed.find(userId => userId == this.userId);
     }
-    console.log(this.myProfile)
-console.log(userFinded)
-    if(userFinded) {
+    if (userFinded) {
       this.isUserInMyFollowed = true;
     } else {
       this.isUserInMyFollowed = false;
@@ -106,14 +105,14 @@ console.log(userFinded)
     const dialogRef = this.dialog.open(UpdateUserDataModalComponent, {
       width: '300px',
       height: '300px',
-      data: {isBornLocation: isBornLocation},
+      data: { isBornLocation: isBornLocation },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(isBornLocation && result) {
+      if (isBornLocation && result) {
         this.user!.bornLocation = result;
         this.authService.editUser(this.user!).subscribe();
-      } else if(!isBornLocation && result) {
+      } else if (!isBornLocation && result) {
         this.user!.liveLocation = result;
         this.authService.editUser(this.user!).subscribe();
       }
@@ -121,7 +120,7 @@ console.log(userFinded)
   }
 
   followActualUser(userId: string): void {
-    if(this.myProfile && userId) {
+    if (this.myProfile && userId) {
       this.myProfile?.followed.push(userId);
       this.authService.editUser(this.myProfile).subscribe(() => {
         this.user?.follower.push(this.myProfile!.id);
@@ -131,7 +130,7 @@ console.log(userFinded)
   }
 
   unfollowActualUser(userId: string): void {
-    if(this.myProfile && userId) {
+    if (this.myProfile && userId) {
       this.myProfile?.followed.splice(this.myProfile.followed.indexOf(userId), 1);
       this.authService.editUser(this.myProfile).subscribe(() => {
         console.log(this.myProfile);
