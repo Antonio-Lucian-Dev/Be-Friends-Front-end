@@ -36,7 +36,26 @@ export class UserActionsComponent implements OnInit {
   }
 
   postComment() {
- //   console.log(this.commentForm.get('text').value);
+    if(this.commentForm.valid) {
+      console.log(this.commentForm.get('text')!.value);
+      let post = {
+        id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
+        userId: this.userId,
+        description: this.commentForm.get('text')!.value,
+        image: [],
+        createdAt: new Date(),
+        likes: [] as any,
+        comments: [] as any
+      }
+      this.postService.createPost(post).subscribe(result => {
+        if(result) {
+          this.postService.isPostCreated.emit(result);
+          this.panelOpenState = false;
+          this.commentForm.get('text')?.patchValue("");
+        }
+      });
+
+    }
   }
 
   openImageDialog(): void {
