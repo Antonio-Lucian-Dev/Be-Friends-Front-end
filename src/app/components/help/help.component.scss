@@ -1,0 +1,70 @@
+@import "/src/color-palete.scss";
+
+.container-margin {
+  margin-top: 100px;
+}
+
+.container-help {
+  flex-wrap: wrap;
+}
+
+form {
+  padding: 15px;
+  border-radius: 5px;
+  height: 420px;
+  background-color: $white-05;
+  input {
+    border-radius: 3px;
+    background-color: $blue;
+    color: $white;
+    border: 0;
+    padding: 5px;
+    width: 100%;
+  }
+  textarea {
+    border-radius: 3px;
+    background-color: $blue;
+    color: $white;
+    border: 0;
+    padding: 5px;
+  }
+}
+
+.container-image {
+  width: 300px;
+  img {
+    width: 100%;
+  }
+}
+
+.title-term {
+  color: $white;
+}
+
+mat-icon {
+  color: $white;
+  font-size: 45px;
+  position: absolute;
+  bottom: 84%;
+  left: 1%;
+  cursor: pointer;
+}
+
+input.ng-invalid.ng-touched  {
+  border: 2px solid #a94442; /* red */
+}
+
+.invalid-feedback {
+  display: flex!important;
+}
+
+.error-message {
+  color: red;
+}
+
+@media only screen and (max-width: 600px) {
+  .container-left {
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+}

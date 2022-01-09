@@ -15,6 +15,7 @@ import { ImageDialogComponent } from './components/user-actions/image-dialog/ima
 import {NgxFilesizeModule} from 'ngx-filesize';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { TermsComponent } from './components/terms/terms.component';
+import { HelpComponent } from './components/help/help.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { TermsComponent } from './components/terms/terms.component';
     AppComponent,
     ImageDialogComponent,
     TermsComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,

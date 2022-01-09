@@ -1,0 +1,58 @@
+@import "/src/color-palete.scss";
+
+.container-terms {
+  flex-wrap: wrap;
+  margin-top: 100px;
+  h5 {
+    color: $white;
+    margin-top: 50px!important;
+  }
+  mat-icon {
+    color: $white;
+    font-size: 45px;
+    position: absolute;
+    bottom: 85%;
+    left: 1%;
+    cursor: pointer;
+  }
+}
+
+.container-image {
+  width: 200px;
+  img {
+    width: 100%;
+  }
+}
+
+.description {
+  color: $white;
+  width: 300px;
+  padding: 17px;
+  background: $white-05;
+  border-radius: 5px;
+  line-height: 2rem;
+}
+
+@media only screen and (max-width: 630px) {
+  .description {
+    margin-right: 0!important;
+  }
+
+  .container-image {
+    margin-top: 50px;
+  }
+
+  .description:nth-child(1) {
+    margin-left: 15px;
+  }
+
+  .description:nth-child(2) {
+    margin-right: 15px;
+  }
+  .container-terms {
+    h5 {
+     margin-top: 50px!important;
+    }
+  }
+
+}

@@ -14,17 +14,21 @@ app-loading {
 
 .page-footer {
   background-color: $gray;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width:100%;
   h5 {
     color: $white;
   }
-  i {
-    font-size: 25px;
-    margin-right: 20px;
-    color: $white;
-    cursor: pointer;
+  .container-social {
+    a {
+      margin-right: 20px;
+    }
+    i {
+      font-size: 25px;
+      color: $white;
+      cursor: pointer;
+    }
   }
 }
 
