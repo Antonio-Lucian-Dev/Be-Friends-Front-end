@@ -58,9 +58,22 @@ export class ListPostComponent implements OnInit, OnDestroy {
 
     // When a post is created this event will be subscribed
     this.postSubscription = this.postService.isPostCreated.subscribe(post => {
-      const actualUser = this.allUsers.find(user => user.id == post.userId);
-      if (actualUser) {
-        this.modifyPost(post, actualUser);
+      if(this.allUsers.length > 0) {
+        console.log(this.allUsers)
+        const actualUser = this.allUsers.find(user => user.id == post.userId);
+        if (actualUser) {
+          this.modifyPost(post, actualUser);
+        }
+      } else {
+        console.log("else")
+        this.authService.getAllUsers().subscribe(users => {
+          this.allUsers = users;
+          const actualUser = this.allUsers.find(user => user.id == post.userId);
+          if (actualUser) {
+            console.log("Intra s")
+            this.modifyPost(post, actualUser);
+          }
+        });
       }
       this.postSubscription?.unsubscribe();
     });
@@ -180,8 +193,11 @@ export class ListPostComponent implements OnInit, OnDestroy {
     }
   }
 
-  deletePost(postId: string): void {
-    this.postService.deletePostById(postId).subscribe();
+  deletePost(post: any): void {
+    this.postService.deletePostById(post.id).subscribe(() => {
+      this.postService.isPostDeleted.emit(false);
+      this.posts.splice(this.posts.indexOf(post), 1);
+    });
   }
 
   /*

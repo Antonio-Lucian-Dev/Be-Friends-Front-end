@@ -11,6 +11,7 @@ import { User } from '../components/interface/User';
 export class PostService {
 
   @Output() isPostCreated = new EventEmitter<any>();
+  @Output() isPostDeleted = new EventEmitter<any>();
   @Output() postLiked = new EventEmitter<any>();
 
   CONNECTION_URL: string;

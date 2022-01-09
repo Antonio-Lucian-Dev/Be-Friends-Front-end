@@ -31,6 +31,8 @@ export class NotificationListComponent implements OnInit, AfterContentChecked {
   postSubscription: Subscription | undefined;
   moment: any = moment;
 
+  postExist = true;
+
   constructor(
     private readonly notificationService: NotificationEndpointService,
     private router: Router, private postService: PostService, private authService: AuthService,
@@ -38,45 +40,54 @@ export class NotificationListComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     this.getNotifications();
+    this.postService.isPostDeleted.subscribe(() => {
+      this.postExist = false;
+      this.notifications = [];
+    });
     let numberOfUsers = 3;
     this.postService.isPostCreated.subscribe(post => {
       this.authService.getAllUsers().subscribe(users => {
-        let counter = 3000;
-        users.forEach(user => {
-          counter += counter;
-          if (user.id != this.userId) {
-            if( numberOfUsers > 0) {
-              setTimeout(() => {
-                const notyf = {
-                  uuid: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
-                  read: false,
-                  new: true,
-                  prefData: {
-                    date: new Date(),
-                    type: "Like",
-                    title: "Post Like",
-                    description: `${user.firstName} just like your photo`,
-                  },
-                  userId: user.id,
-                  createdAt: new Date()
-                };
-                this.notifications.unshift(notyf);
-                post.likes.push(user.id);
-                this.notificationService.createNotification(notyf);
-                // Create notification for each like for that post
+        if (post) {
+          let counter = 3000;
+          users.forEach(user => {
+            if (this.postExist) {
+              counter += counter;
+              if (user.id != this.userId) {
+                if (numberOfUsers > 0) {
+                  setTimeout(() => {
+                    const notyf = {
+                      uuid: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
+                      read: false,
+                      new: true,
+                      prefData: {
+                        date: new Date(),
+                        type: "Like",
+                        title: "Post Like",
+                        description: `${user.firstName} just like your photo`,
+                      },
+                      userId: user.id,
+                      createdAt: new Date()
+                    };
+                    this.notifications.unshift(notyf);
+                    post.likes.push(user.id);
+                    this.notificationService.createNotification(notyf);
+                    // Create notification for each like for that post
 
-
-                // Add like on the post
-                this.postSubscription = this.postService.likeAPost(post).subscribe(response => {
-                  this.postService.postLiked.emit(post)
-                  this.numberofNotificationsNotRead++;
-                  this.postSubscription?.unsubscribe();
-                });
-                numberOfUsers--;
-              }, counter)
+                    if (this.postExist) {
+                      // Add like on the post
+                      this.postSubscription = this.postService.likeAPost(post).subscribe(response => {
+                        this.postService.postLiked.emit(post)
+                        this.numberofNotificationsNotRead++;
+                        this.postSubscription?.unsubscribe();
+                      });
+                      numberOfUsers--;
+                    }
+                  }, counter)
+                }
+              }
             }
-          }
-        })
+          });
+        }
       });
     });
   }

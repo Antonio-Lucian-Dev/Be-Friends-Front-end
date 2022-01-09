@@ -99,7 +99,7 @@
                 (imageListEmitter)="getImagesFromPosts($event)"></app-list-post>
               <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5">
                 <div class=" d-flex justify-content-around mt-3 mb-3 w-100">
-                  <div class="top d-flex justify-content-start" *ngIf="user">
+                  <div class="d-flex justify-content-start" *ngIf="user">
                     <span class="w-100 user-on-app">On Be Friend from: {{user.createdAt | date: 'dd MMM yyyy'}}</span>
                   </div>
                 </div>
