@@ -1,3 +1,5 @@
+@import "/src/color-palete.scss";
+
 app-loading {
   position: fixed;
   height: 100%;
@@ -8,4 +10,28 @@ app-loading {
   justify-content: center;
   background: black;
   z-index: 11111;
+}
+
+.page-footer {
+  background-color: $gray;
+  position: relative;
+  bottom: 0;
+  width:100%;
+  h5 {
+    color: $white;
+  }
+  .container-social {
+    a {
+      margin-right: 20px;
+    }
+    i {
+      font-size: 25px;
+      color: $white;
+      cursor: pointer;
+    }
+  }
+}
+
+.footer-copyright {
+  color: $white;
 }

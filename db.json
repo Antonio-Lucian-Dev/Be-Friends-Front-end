@@ -1,58 +1,272 @@
 {
- "users": [
-   {
-     "id": 1,
-     "profileImage": "src/assets/img/men-1.jpg",
-     "name": "Andrei Liviu",
-     "birthday": "19/05/1998",
-      "createdAt": "10/10/2021",
+  "users": [
+    {
+      "id": "1",
+      "profileImage": "./assets/img/men-1.jpg",
+      "firstName": "Andrei",
+      "lastName": "Liviu",
+      "email": "test@gmail.com",
+      "password": "password",
+      "birthday": "19/05/1998",
+      "createdAt": "2022-01-05T08:42:49.989Z",
       "bornLocation": "New York, US",
-      "liveLocation": "Los Angeles, US"
+      "liveLocation": "Los Angeles, US",
+      "follower": [],
+      "followed": [
+        "3150",
+        "5522",
+        "3464"
+      ]
     },
     {
-      "id": 2,
-      "profileImage": "src/assets/img/girl-1.jpg",
-      "name": "Delia Andreea",
+      "id": "2",
+      "profileImage": "./assets/img/girl-1.jpg",
+      "firstName": "Delia",
+      "lastName": "Andreea",
+      "email": "test@gmail.com",
+      "password": "password",
       "birthday": "10/11/1999",
-       "createdAt": "23/12/2021",
-       "bornLocation": "Bacau, RO",
-       "liveLocation": "Rome, IT"
-     },
-     {
-      "id": 3,
-      "profileImage": "src/assets/img/girl-2.jpg",
-      "name": "Iulia Savu",
+      "createdAt": "2021-07-23T08:42:49.989Z",
+      "bornLocation": "Bacau, RO",
+      "liveLocation": "Rome, IT",
+      "follower": [
+        "3",
+        "3464"
+      ],
+      "followed": [
+        "1",
+        "3",
+        "3464"
+      ]
+    },
+    {
+      "id": "3",
+      "profileImage": "./assets/img/girl-2.jpg",
+      "firstName": "Iulia",
+      "lastName": "Savu",
+      "email": "test@gmail.com",
+      "password": "password",
       "birthday": "04/12/2002",
-       "createdAt": "02/07/2021",
-       "bornLocation": "Bucharest, RO",
-       "liveLocation": "New York, US"
-     }
- ],
- "comments": [
-   {
-     "id": 89,
-     "userId": 2,
-     "value": "Sunt perfect deacord!"
-   }
- ],
- "posts": [
-   {
-     "id": 21,
-     "userId": 1,
-     "description": "Ce zi frumoasa!",
-     "image": [
-       {
-         "id": 56,
-         "value": "src/assets/img/girl-2.jpg"
-       }
-     ],
-     "createdAt": "02/07/2021",
-     "likes": 23,
-     "comments": [
-       {
-         "commentId": 89
-       }
-     ]
-   }
- ]
+      "createdAt": "2021-06-11T08:42:49.989Z",
+      "bornLocation": "Bucharest, RO",
+      "liveLocation": "New York, US",
+      "follower": [
+        "1",
+        "2"
+      ],
+      "followed": [
+        "1",
+        "2"
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": 89,
+      "userId": 2,
+      "value": "Sunt perfect deacord!"
+    }
+  ],
+  "posts": [
+    {
+      "id": "21",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-1.jpg"
+        }
+      ],
+      "createdAt": "2019-07-30T08:38:31.363Z",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ],
+      "user": {
+        "id": "1",
+        "profileImage": "./assets/img/men-1.jpg",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "password",
+        "birthday": "19/05/1998",
+        "createdAt": "10/10/2021",
+        "bornLocation": "New York, US",
+        "liveLocation": "Los Angeles, US",
+        "follower": [],
+        "followed": []
+      }
+    },
+    {
+      "id": "20",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-2.jpg"
+        }
+      ],
+      "createdAt": "2021-03-31T08:38:31.363Z",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ],
+      "user": {
+        "id": "1",
+        "profileImage": "./assets/img/men-1.jpg",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "password",
+        "birthday": "19/05/1998",
+        "createdAt": "10/10/2021",
+        "bornLocation": "New York, US",
+        "liveLocation": "Los Angeles, US",
+        "follower": [],
+        "followed": []
+      }
+    },
+    {
+      "id": "23",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-3.jpg"
+        }
+      ],
+      "createdAt": "2021-03-01T08:38:31.363Z",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ],
+      "user": {
+        "id": "1",
+        "profileImage": "./assets/img/men-1.jpg",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "password",
+        "birthday": "19/05/1998",
+        "createdAt": "2022-01-05T08:42:49.989Z",
+        "bornLocation": "New York, US",
+        "liveLocation": "Los Angeles, US",
+        "follower": [],
+        "followed": []
+      }
+    },
+    {
+      "id": "26",
+      "userId": "2",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-4.jpg"
+        }
+      ],
+      "createdAt": "2021-09-23T08:38:31.363Z",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ],
+      "user": {
+        "id": "2",
+        "profileImage": "./assets/img/girl-1.jpg",
+        "firstName": "Delia",
+        "lastName": "Andreea",
+        "email": "test@gmail.com",
+        "password": "password",
+        "birthday": "10/11/1999",
+        "createdAt": "2021-07-23T08:42:49.989Z",
+        "bornLocation": "Bacau, RO",
+        "liveLocation": "Rome, IT",
+        "follower": [
+          "3"
+        ],
+        "followed": [
+          "1",
+          "3"
+        ]
+      }
+    },
+    {
+      "id": "27",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": 56,
+          "value": "./assets/img/poza-5.jpg"
+        }
+      ],
+      "createdAt": "2021-11-12T08:38:31.363Z",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "userId": "1",
+      "description": "Ce zi frumoasa!",
+      "image": [
+        {
+          "id": "56",
+          "value": "./assets/img/poza-6.jpg"
+        }
+      ],
+      "createdAt": "2021-12-21T08:38:31.363Z",
+      "likes": [
+        "1",
+        "2"
+      ],
+      "comments": [
+        {
+          "commentId": "89"
+        }
+      ],
+      "user": {
+        "id": "1",
+        "profileImage": "./assets/img/men-1.jpg",
+        "firstName": "Andrei",
+        "lastName": "Liviu",
+        "email": "test@gmail.com",
+        "password": "password",
+        "birthday": "19/05/1998",
+        "createdAt": "10/10/2021",
+        "bornLocation": "New York, US",
+        "liveLocation": "Los Angeles, US"
+      }
+    }
+  ],
+  "notifications": []
 }

@@ -1,0 +1,15 @@
+<div class="container-upload">
+  <h1 mat-dialog-title>Update Information</h1>
+  <div mat-dialog-content *ngIf="isBornLocation">
+    <p>Where were you born?</p>
+    <input class="input-user" [(ngModel)]="data.updatedResult" placeholder="Ex..Bacau, Romania">
+  </div>
+  <div mat-dialog-content *ngIf="!isBornLocation">
+    <p>Where do you live?</p>
+    <input class="input-user" [(ngModel)]="data.updatedResult" placeholder="Ex..Roma, Italy">
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="data.updatedResult" color="primary" cdkFocusInitial>Update</button>
+    <button mat-raised-button mat-dialog-close color="warn">Close</button>
+  </div>
+</div>

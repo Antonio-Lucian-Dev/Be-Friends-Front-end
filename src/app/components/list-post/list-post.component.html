@@ -1,29 +1,42 @@
 <div class="d-flex flex-column justify-content-center align-items-center container-list mt-5" *ngFor="let post of posts">
-  <div class="top d-flex justify-content-start mt-3 mb-3 ml-3">
-    <div class="container-image mr-3">
-      <img [src]="post.user.profileImage" alt="">
+  <div class=" d-flex justify-content-around mt-3 mb-3 ml-3 w-100" *ngIf="post.user">
+    <div class="top d-flex justify-content-start">
+      <div class="container-image mr-3">
+        <img [src]="post.user.profileImage" alt="" (click)="goToUserProfile(post.user.id)">
+      </div>
+      <div class="container-info d-flex flex-column justify-content-start">
+         <span>{{post.user.firstName}} {{post.user.lastName}}</span>
+          <span>{{post.createdAt | date: 'dd MMM yyyy, hh:mm'}}</span>
+      </div>
     </div>
-    <div class="container-info d-flex flex-column justify-content-start">
-       <span>{{post.user.firstName}} {{post.user.lastName}}</span>
-        <span>{{post.post.createdAt}}</span>
-    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="post.user.id == myUserId">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="deletePost(post)">
+        <mat-icon class="material-icons-outlined">
+          delete
+        </mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
   </div>
   <div class="center d-flex flex-column justify-content-center">
-    <span class="mb-2">{{post.post.description}}</span>
-    <img [src]="post.post.image[0].value" alt="">
+    <span class="mb-2">{{post.description}}</span>
+    <img *ngIf="post.image.length" [src]="post.image[0].value" alt="">
   </div>
   <div class="bottom d-flex align-items-center justify-content-start ml-3 mt-3 mb-3">
     <div class="d-flex align-items-center mr-4">
-      <mat-icon class="material-icons-outlined mr-2">
+      <mat-icon class="material-icons-outlined mr-2" (click)="likeAction(post)" [ngClass]="post.likes.includes(myUserId) ? 'red' : ''">
         favorite
       </mat-icon>
-      <span>{{post.post.likes}}</span>
+      <span>{{post.likes.length}}</span>
     </div>
     <div class="d-flex align-items-center">
       <mat-icon class="material-icons-outlined mr-2">
         question_answer
         </mat-icon>
-      <span>{{post.post.comments.length}}</span>
+      <span>{{post.comments.length}}</span>
     </div>
   </div>
 </div>

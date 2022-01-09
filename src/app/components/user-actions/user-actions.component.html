@@ -2,11 +2,11 @@
  <div class="action d-flex flex-column align-items-center justify-content-center">
   <div class="d-flex align-items-center justify-content-center">
     <div class="profile-image">
-      <img src="./assets/img/girl-1.jpg" alt="">
+      <div *ngIf="user" [ngStyle]="{'background-image': 'url(' + user!.profileImage + ')'}" class="image-profile"></div>
     </div>
     <div class="icons d-flex align-items-center">
       <div class="d-flex mr-5">
-        <mat-icon class="material-icons-outlined">
+        <mat-icon class="material-icons-outlined" (click)="openImageDialog()">
           image
         </mat-icon>
       </div>

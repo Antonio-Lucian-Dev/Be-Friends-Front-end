@@ -47,9 +47,11 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $blue;
 }
 
 carousel {
+  z-index: 2!important;
   .carousel-container {
     border-bottom: 2px solid $white;
   }
@@ -92,4 +94,10 @@ mat-tab-group {
   .mat-tab-body-content {
     overflow: visible;
   }
+}
+
+.mat-dialog-container {
+  padding: 0!important;
+  background-color: transparent!important;
+  overflow: hidden!important;
 }

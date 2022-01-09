@@ -10,11 +10,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { SignUpModule } from './auth/sign-up/sign-up.module';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+import { ImageDialogComponent } from './components/user-actions/image-dialog/image-dialog.component';
+import {NgxFilesizeModule} from 'ngx-filesize';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { TermsComponent } from './components/terms/terms.component';
+import { HelpComponent } from './components/help/help.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ImageDialogComponent,
+    TermsComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +34,9 @@ import { ToastrModule } from 'ngx-toastr';
     SignUpModule,
     SignInModule,
     ToastrModule.forRoot(),
+    HttpClientModule,
+    NgxFilesizeModule,
+    NgxSkeletonLoaderModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

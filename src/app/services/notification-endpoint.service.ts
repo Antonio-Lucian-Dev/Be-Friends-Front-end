@@ -1,4 +1,5 @@
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Noty } from '../shared/interface/noty';
 
@@ -9,47 +10,35 @@ export class NotificationEndpointService {
 
   CONNECTION_URL: string;
 
-  constructor() {
-    this.CONNECTION_URL = "http://localhost:9292";
+  constructor(private http: HttpClient) {
+    this.CONNECTION_URL = "http://localhost:3000";
   }
 
   getNotifications(): Observable<Noty[]> {
-    return of(JSON.parse(localStorage.getItem("notifications") || '{}'));
-  }
-
-  readNotification(notificationId: string): Observable<Noty[]> {
-    const notifications: Noty[] = JSON.parse(localStorage.getItem("notifications") || '{}');
-    notifications.map(notification => {
-      if(notification.uuid == notificationId) {
-        notification.read = true;
-        this.updateNotification(notifications);
-        return;
-      }
-    });
-    return of(JSON.parse(localStorage.getItem("notifications") || '{}'));
+    return this.http.get<Noty[]>(`${this.CONNECTION_URL}/notifications`);
   }
 
   createNotification(notification: Noty) {
-    let notifications: Noty[] = JSON.parse(localStorage.getItem("notifications") || '{}');
-    if(!notifications.length) {
-      notifications = [];
-    }
-    notifications.push(notification);
+    return this.http.post<Noty>(`${this.CONNECTION_URL}/notifications`, notification);
+  }
 
-    localStorage.setItem("notifications", JSON.stringify(notifications));
+  readNotification(notification: Noty): Observable<Noty> {
+    return this.http.patch<Noty>(`${this.CONNECTION_URL}/notifications/${notification.uuid}`, notification);
+  }
+
+  readAllNotifications(notifications: Noty[]): Observable<Noty[]> {
+    return forkJoin(notifications.map(notification => {
+      notification.read = true;
+      notification.new = false;
+      return this.http.patch<Noty>(`${this.CONNECTION_URL}/notifications/${notification.uuid}`, notification);
+    }));
   }
 
   updateNotification(notifications: Noty[]): void {
     localStorage.setItem("notifications", JSON.stringify(notifications));
   }
 
-  deleteNotification(uuid: string): Observable<boolean> {
-    let notifications: Noty[] = JSON.parse(localStorage.getItem("notifications") || '{}');
-    notifications.forEach(notification => {
-      if(notification.uuid == uuid) {
-        notifications.splice(notifications.indexOf(notification), 1);
-      }});
-    localStorage.setItem("notifications", JSON.stringify(notifications));
-    return of(true);
+  deleteNotification(uuid: string): Observable<any> {
+    return this.http.delete(`${this.CONNECTION_URL}/notifications/${uuid}`);
   }
 }

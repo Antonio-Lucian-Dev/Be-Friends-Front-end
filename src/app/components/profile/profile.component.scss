@@ -10,16 +10,21 @@
   margin-bottom: 48px;
 }
 
-.container-image {
-  width: 140px;
-  img {
-    width: 100%;
+  #userImageProfile {
+    height: 140px;
+    width: 140px;
+    background-position: center;
+    background-size: cover;
     border-radius: 50%;
     border: 2px solid $white;
+    cursor: pointer;
   }
-}
+  #uploadImageInput {
+    display: none;
+  }
 
 .top {
+  margin-top: 100px;
   mat-icon {
     font-size: 25px;
     color: $white;
@@ -46,7 +51,7 @@
 
 .left {
   position: relative;
-  right: 37%;
+  right: 34%;
 }
 
 .container-images {
@@ -65,3 +70,58 @@
   }
 }
 
+.container-list {
+  width: 320px;
+  background: $gray;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.top {
+  width: 100%;
+  .container-image {
+    width: 35px;
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .container-info {
+    color: $white;
+    span:nth-child(2) {
+      font-size: 12px;
+    }
+  }
+}
+
+.center {
+  width: 95%;
+  img {
+    width: 100%;
+    border-radius: 20px;
+  }
+  span {
+    color: $white;
+  }
+}
+
+.bottom {
+  width: 100%;
+  mat-icon {
+    color: $white;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  span {
+    color: $white;
+  }
+}
+
+.red {
+  color: red!important;
+}
+
+.user-on-app {
+  text-align: center;
+}

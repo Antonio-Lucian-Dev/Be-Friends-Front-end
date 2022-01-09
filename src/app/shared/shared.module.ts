@@ -15,6 +15,10 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatBadgeModule} from '@angular/material/badge';
 import { UserActionsComponent } from '../components/user-actions/user-actions.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 const NB_MODULES = [
@@ -27,7 +31,11 @@ const NB_MODULES = [
   FormsModule,
   MatDividerModule,
   MatListModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatDialogModule,
+  MatProgressBarModule,
+  MatCardModule,
+  MatMenuModule,
 ];
 const COMPONENTS = [
   NavBarComponent,

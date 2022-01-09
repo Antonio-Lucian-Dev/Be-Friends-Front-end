@@ -1,3 +1,5 @@
+import { HelpComponent } from './components/help/help.component';
+import { TermsComponent } from './components/terms/terms.component';
 import { BeFriendsGuard } from './auth/be-friends.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,7 +9,9 @@ const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: 'sign-up', loadChildren: () => import('./auth/sign-up/sign-up.module').then(m => m.SignUpModule) },
   { path: 'sign-in', loadChildren: () => import('./auth/sign-in/sign-in.module').then(m => m.SignInModule) },
-  { path: 'profile/:id', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule) },
+  { path: 'profile/:id', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule), canActivate: [BeFriendsGuard] },
+  { path: 'terms', component: TermsComponent},
+  { path: 'help', component: HelpComponent},
 ];
 
 @NgModule({

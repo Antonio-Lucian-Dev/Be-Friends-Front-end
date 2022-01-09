@@ -24,15 +24,14 @@ export class SignUpComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('notifications');
   }
 
   // convenience getter for easy access to form fields
   get userInfoControls() { return this.userInfo.controls; }
 
   onSubmit(): void {
-    console.log(this.userInfoControls)
     this.submitted = true;
-    console.log(this.userInfo.valid, this.userInfo.value);
     if (this.userInfo.valid) {
       const request = {
         id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
@@ -44,13 +43,30 @@ export class SignUpComponent implements OnInit {
         password: this.userInfo.get('password')?.value,
         createdAt: new Date(),
         bornLocation: "",
-        liveLocation: ""
+        liveLocation: "",
+        follower: [
+          '1',
+          '2'
+        ],
+        followed: [
+          '1',
+          '2'
+        ]
       }
-      const response = this.authService.register(request);
-      if (response) {
-        this.toastr.success('Registration Complete', 'Please login with your credential!');
-        this.router.navigate(['/sign-in']);
-      }
+      this.authService.register(request).subscribe(response => {
+        this.authService.getUserById('1').subscribe(user => {
+          user.follower.push(response.id);
+          user.followed.push(response.id);
+          this.authService.editUser(user).subscribe();
+        });
+        this.authService.getUserById('2').subscribe(user => {
+          user.follower.push(response.id);
+          user.followed.push(response.id);
+          this.authService.editUser(user).subscribe();
+          this.toastr.success('Registration Complete', 'Please login with your credential!');
+          this.router.navigate(['/sign-in']);
+        });
+      });
     }
   }
 

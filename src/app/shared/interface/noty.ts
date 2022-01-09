@@ -3,7 +3,7 @@ export interface Noty {
   read: boolean;
   new: boolean;
   prefData: {
-    date: string;
+    date: Date;
     type: string;
     title: string;
     description: string;

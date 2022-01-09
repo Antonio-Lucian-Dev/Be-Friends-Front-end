@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center ml-3 container-icon">
   <mat-icon class="material-icons-outlined mat-badge-accent" matbadgecolor="accent" [matBadgeHidden]="true" [matBadge]="numberofNotificationsNotRead"
-   (click)="isOpen = !isOpen" [ngClass]="(numberofNotificationsNotRead == 0) ? 'mat-badge-hidden' : 'mat-badge-hidden'">
+   (click)="isOpen = !isOpen" [ngClass]="(numberofNotificationsNotRead == 0) ? 'mat-badge-hidden' : ''">
     notifications
   </mat-icon>
 </div>
@@ -33,7 +33,7 @@
                       </mat-icon>
                     </span>
                   </div>
-                  <div class="description-content" (click)="markNotificationAsRead(notification)">
+                  <div class="description-content" (click)="markNotificationAsRead(notification.uuid)">
                     <div class="description-content__description">
                       <span class="description-header"
                         title="{{notification.prefData.title}}">{{notification.prefData.description}}</span>
