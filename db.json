@@ -12,11 +12,7 @@
       "bornLocation": "New York, US",
       "liveLocation": "Los Angeles, US",
       "follower": [],
-      "followed": [
-        "3150",
-        "5522",
-        "3464"
-      ]
+      "followed": []
     },
     {
       "id": "2",
@@ -30,32 +26,29 @@
       "bornLocation": "Bacau, RO",
       "liveLocation": "Rome, IT",
       "follower": [
-        "3",
-        "3464"
+        "3"
       ],
       "followed": [
         "1",
-        "3",
-        "3464"
+        "3"
       ]
     },
     {
       "id": "3",
       "profileImage": "./assets/img/girl-2.jpg",
-      "firstName": "Iulia",
-      "lastName": "Savu",
+      "firstName": "Denisa",
+      "lastName": "Manole",
       "email": "test@gmail.com",
       "password": "password",
-      "birthday": "04/12/2002",
-      "createdAt": "2021-06-11T08:42:49.989Z",
-      "bornLocation": "Bucharest, RO",
-      "liveLocation": "New York, US",
+      "birthday": "19/05/1998",
+      "createdAt": "10/10/2021",
+      "bornLocation": "Brasov, Romania",
+      "liveLocation": "Madrid, Spain",
       "follower": [
         "1",
         "2"
       ],
       "followed": [
-        "1",
         "2"
       ]
     }
@@ -70,8 +63,8 @@
   "posts": [
     {
       "id": "21",
-      "userId": "1",
-      "description": "Ce zi frumoasa!",
+      "userId": "2",
+      "description": "Ce seara frumoasa!",
       "image": [
         {
           "id": 56,
@@ -89,24 +82,24 @@
         }
       ],
       "user": {
-        "id": "1",
-        "profileImage": "./assets/img/men-1.jpg",
-        "firstName": "Andrei",
-        "lastName": "Liviu",
+        "id": "2",
+        "profileImage": "./assets/img/girl-1.jpg",
+        "firstName": "Delia",
+        "lastName": "Andreea",
         "email": "test@gmail.com",
         "password": "password",
-        "birthday": "19/05/1998",
-        "createdAt": "10/10/2021",
-        "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US",
+        "birthday": "10/11/1999",
+        "createdAt": "2021-07-23T08:42:49.989Z",
+        "bornLocation": "Bacau, RO",
+        "liveLocation": "Rome, IT",
         "follower": [],
         "followed": []
       }
     },
     {
       "id": "20",
-      "userId": "1",
-      "description": "Ce zi frumoasa!",
+      "userId": "3",
+      "description": "Aici avem o poza profesionala facuta de un fotograf pe cinste!",
       "image": [
         {
           "id": 56,
@@ -124,16 +117,16 @@
         }
       ],
       "user": {
-        "id": "1",
-        "profileImage": "./assets/img/men-1.jpg",
-        "firstName": "Andrei",
-        "lastName": "Liviu",
+        "id": "3",
+        "profileImage": "./assets/img/girl-2.jpg",
+        "firstName": "Denisa",
+        "lastName": "Manole",
         "email": "test@gmail.com",
         "password": "password",
         "birthday": "19/05/1998",
         "createdAt": "10/10/2021",
-        "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US",
+        "bornLocation": "Brasov, Romania",
+        "liveLocation": "Madrid, Spain",
         "follower": [],
         "followed": []
       }
@@ -141,7 +134,7 @@
     {
       "id": "23",
       "userId": "1",
-      "description": "Ce zi frumoasa!",
+      "description": "Seara magica!",
       "image": [
         {
           "id": 56,
@@ -176,7 +169,7 @@
     {
       "id": "26",
       "userId": "2",
-      "description": "Ce zi frumoasa!",
+      "description": "Ador acest peisaj!",
       "image": [
         {
           "id": 56,
@@ -216,7 +209,7 @@
     {
       "id": "27",
       "userId": "1",
-      "description": "Ce zi frumoasa!",
+      "description": "Inapoi la munca",
       "image": [
         {
           "id": 56,
@@ -236,8 +229,8 @@
     },
     {
       "id": "28",
-      "userId": "1",
-      "description": "Ce zi frumoasa!",
+      "userId": "4",
+      "description": "Vacanta!",
       "image": [
         {
           "id": "56",
@@ -255,16 +248,16 @@
         }
       ],
       "user": {
-        "id": "1",
-        "profileImage": "./assets/img/men-1.jpg",
-        "firstName": "Andrei",
-        "lastName": "Liviu",
+        "id": "4",
+        "profileImage": "./assets/img/girl-2.jpg",
+        "firstName": "Denisa",
+        "lastName": "Manole",
         "email": "test@gmail.com",
         "password": "password",
         "birthday": "19/05/1998",
         "createdAt": "10/10/2021",
-        "bornLocation": "New York, US",
-        "liveLocation": "Los Angeles, US"
+        "bornLocation": "Brasov, Romania",
+        "liveLocation": "Madrid, Spain"
       }
     }
   ],
